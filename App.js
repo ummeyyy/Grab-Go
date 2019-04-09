@@ -34,6 +34,8 @@ import ProfileScreen from './src/Screens/ProfileScreen'
 import SearchScreen from './src/Screens/SearchScreen'
 import CartScreen from './src/Screens/CartScreen'
 import BarCodeScreen from './src/Screens/BarCodeScreen'
+import CheckoutScreen from './src/Screens/CheckoutScreen'
+import PurchaseSuccessful from './src/Screens/PurchaseSuccessful'
 
 
 const AuthStackNavigator = createStackNavigator({
@@ -48,7 +50,6 @@ const barcodeStackNavigator = createStackNavigator({
     navigationOptions:{
       header:null,
     }
-  
   },
 
   scan:{
@@ -77,6 +78,45 @@ barcodeStackNavigator.navigationOptions = ({ navigation }) => {
   };
 };
 
+const cartStackNavigator = createStackNavigator({
+  cart:{
+    screen:CartScreen,
+    navigationOptions:{
+      header:null,
+      tabBarVisible: false
+    }  
+  },
+  checkout:{
+    screen:CheckoutScreen,
+    navigationOptions:{
+      header:null,
+      tabBarVisible: false
+    }  
+  },
+  buy:{
+    screen:PurchaseSuccessful,
+    navigationOptions:{
+      header:null,
+      tabBarVisible: false   
+    }
+  }
+})
+cartStackNavigator.navigationOptions = ({ navigation }) => {
+  let tabBarVisible;
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === "checkout") {
+        tabBarVisible = false;
+      } else {
+        tabBarVisible = true;
+      }
+    });
+  }
+
+  return {
+    tabBarVisible
+  };
+};
 
 
 
@@ -95,7 +135,7 @@ const AppTabNavigator = createBottomTabNavigator(
   Barcode: {
     screen: barcodeStackNavigator,
     navigationOptions: {
-      tabBarLabel: 'Scanner',
+      tabBarLabel: 'SCANNER',
       tabBarIcon: () => (
         <Icon name="ios-barcode" size={24} />
       )
@@ -104,16 +144,16 @@ const AppTabNavigator = createBottomTabNavigator(
   Search: {
     screen: SearchScreen,
     navigationOptions: {
-      tabBarLabel: 'Discover',
+      tabBarLabel: 'DISCOVER',
       tabBarIcon: () => (
         <Icon name="ios-search" size={24} />
       )
     }
   },
   Cart: {
-    screen: CartScreen,
+    screen: cartStackNavigator,
     navigationOptions: {
-      tabBarLabel: 'Cart',
+      tabBarLabel: 'CART',
       tabBarIcon: () => (
         <Icon name="ios-cart" size={24} />
       )
@@ -122,7 +162,7 @@ const AppTabNavigator = createBottomTabNavigator(
   Settings: {
     screen: SettingsScreen,
     navigationOptions: {
-      tabBarLabel: 'More',
+      tabBarLabel: 'MORE',
       tabBarIcon: () => (
         <Icon name="ios-settings" size={24} />
       )
@@ -131,14 +171,14 @@ const AppTabNavigator = createBottomTabNavigator(
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {
-      tabBarLabel: 'Profile',
+      tabBarLabel: 'PROFILE',
       tabBarIcon: () => (
         <Icon name="ios-person" size={24} />
       )
     }
-
   },
 },
+
 {
 initialRouteName:"HomeScreen",
 animationEnabled:"true",
@@ -152,7 +192,6 @@ tabBarOptions : {
     // inactiveTintColor: 'gray',
     showLabel : true,
     showIcon : true,
-   
   },
   }
 )
@@ -161,7 +200,7 @@ const AppStackNavigator = createStackNavigator({
   AppTabNavigator: {
     screen: AppTabNavigator,
     navigationOptions: ({ navigation }) => ({
-      title: "grab-n-go",
+      title: "Grab-&-Go",
       headerLeft: (
         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
           <View style={{ paddingHorizontal: 10 }}>
@@ -186,7 +225,8 @@ AppTabNavigator.navigationOptions = ({ navigation }) => {
 
 const AppDrawerNavigator = createDrawerNavigator({
   Home: AppStackNavigator,
-  barcode:barcodeStackNavigator
+  barcode:barcodeStackNavigator,
+  cart: cartStackNavigator
 })
 
 export default createSwitchNavigator({

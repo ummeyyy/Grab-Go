@@ -13,13 +13,26 @@ export default class App extends React.Component {
 
              {/* ============Heading============== */}
              <View style={styles.check}>
-              <Text style = {styles.heading}>Cart</Text>
+              <Text style = {styles.heading}>Checkout</Text>
              </View>
 
-                  {/* ============Items============== */}
+             {/* ============Payment Method============== */}
+
+             <View style={{ paddingLeft:12, marginTop:50}}>
+             <Text style = {styles.caption}>PAYMENT METHOD</Text>
+                <View style={{ flex:1,paddingTop:25, marginTop:50}}>
+                    <Image style={styles.stretch}
+                    source={require('../Image/mastercard.png')} />
+                    <View style={{ flex:2,marginTop:-23, paddingLeft:15}}>
+                    <Text style = {styles.text1}>Master Card ending **00</Text>
+                    </View>
+                </View>              
+               </View>
+
+              {/* ============Items============== */}
              
              
-             <View style={{ paddingTop:5,paddingLeft:12}}>
+             <View style={{ paddingTop:20,paddingLeft:12}}>
 
                 <Text style = {styles.caption}>ITEMS</Text>
              </View>
@@ -54,7 +67,7 @@ export default class App extends React.Component {
                     </Left>
                    <Right style = {{flexDirection:"row", marginLeft:35}} >
                       <Button  title = "CHECKOUT" color="white" fontWeight='bold' style={{paddingLeft:35}}
-                      onPress = {()=>this.props.navigation.navigate('checkout')}></Button>
+                      onPress = {()=>this.props.navigation.navigate('buy')}></Button>
                          <Icon style = {{color:"white"}} name='ios-arrow-dropright' />                  
                     </Right>
                 </Footer>         

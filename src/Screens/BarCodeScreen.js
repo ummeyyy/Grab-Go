@@ -1,8 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button, Image } from 'react-native';
 import { LinearGradient } from 'expo';
-import { createStackNavigator, createAppContainer} from 'react-navigation';
-
 
 export default class BlackFade extends React.Component {
   static navigationOptions = {

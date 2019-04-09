@@ -8,14 +8,13 @@ export default class BlackFade extends React.Component {
       return (
         
          <View style={{ backgroundColor: 'white', flex: 1}}>
-           <LinearGradient colors={['white', '#517fa4']} 
-           style={{ flex:1,padding: 15, borderRadius: 6 }}>
-
+           <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+           style={{ flex:1, borderRadius:0 }}>
 
 {/* -------------------------SEARCH BAR--------------------------- */}
 
 
-             <View style = {{height:200,marginTop:10}}> 
+             <View style = {{height:200,marginTop:30}}> 
                <Text style={styles.heading}>Search</Text>
              </View> 
              <View  style = {styles.searchbar}>
@@ -44,7 +43,7 @@ export default class BlackFade extends React.Component {
                <View style = {{ flex: 1, flexDirection: 'row', justifyContent: 'space-between',  height: 59,
       width: 175, marginTop:-290}}>
                 <Button bordered info style={{ borderColor: '515C6F', paddingTop: 5,
-                 paddingBottom: 5, height: 59, width: 185, justifyContent: "center", marginTop:5}}>
+                 paddingBottom: 5, height: 59, width: 185, justifyContent: "center", marginTop:5, marginLeft:5}}>
                  <View style = {{ flex: 1, flexDirection: 'row'}}>
                      <Image style={styles.stretch}
                 source={require('D:/reactnative/grab-n-go-master/src/Image/scarf.png')} /> 
@@ -59,7 +58,7 @@ export default class BlackFade extends React.Component {
                
 
                <View style = {{ flex: 2, flexDirection: 'row', alignContent: 'space-between',  height: 59,
-      width: 175, marginTop:0, marginLeft:20}}>
+      width: 175, marginTop:0, marginLeft:8}}>
                 <Button bordered info style={{ borderColor: '515C6F', paddingTop: 5,
                  paddingBottom: 5, height: 59, width: 185, justifyContent: "center", marginTop:5}}>
                  <View style = {{ marginLeft:7, flex: 1, flexDirection: 'row'}}>
@@ -103,12 +102,14 @@ export default class BlackFade extends React.Component {
       fontSize: 17
    },
     searchbar: {
-      marginTop:-130,
+      marginTop:-100,
       height: 40,
-      width: 340,
+      width: 350,
       backgroundColor: 'white',
-      borderRadius: 15
-    },
+      borderRadius: 15,
+      marginLeft: 10,
+      marginRight: 10
+        },
     stretch: {
       marginTop:2,
        width: 41,
@@ -117,9 +118,10 @@ export default class BlackFade extends React.Component {
     heading:{
        fontFamily: 'Avenir-Book',
        color: '#515C6F',
-       marginTop:5,
+       marginTop:30,
        fontSize: 39,
        textAlign: 'left',
        fontWeight: 'bold',
+       paddingLeft: 15
        }
    });

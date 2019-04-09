@@ -5,10 +5,13 @@ import { LinearGradient } from 'expo';
 export default class HomeScreen extends React.Component{
     render(){
         return(
-          <View style={{ backgroundColor: 'white', flex: 1}}>
-           <LinearGradient colors={['white', '#517fa4']} 
-           style={{ flex:1,padding: 15, borderRadius: 6 }}>
-            {/* ===================== CATEGORIES ========================== */}
+            <View style={styles.container}>
+
+<View style={{ backgroundColor: 'white', flex: 1}}>
+          <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+           style={{ flex:1, borderRadius:0 }}>
+
+{/* ===================== CATEGORIES ========================== */}
                <View style={styles.categories}>
                 <Text style={styles.text}> Categories </Text>
                  </View>
@@ -17,7 +20,7 @@ export default class HomeScreen extends React.Component{
                 <View style={styles.options}> 
                       <Image 
                         style={styles.images} 
-                        source={require('D:/reactnative/grab-n-go-master/src/Image/scarf.jpg')}/>
+                        source={require('../Image/scarf.jpg')}/>
                     </View> 
 
                     <View style={styles.options}>
@@ -29,7 +32,7 @@ export default class HomeScreen extends React.Component{
                     <View style={styles.options}>
                       <Image 
                         style={styles.images} 
-                        source={require('D:/reactnative/grab-n-go-master/src/Image/backapck.jpg')}/>
+                        source={require('../Image/backapck.jpg')}/>
                     </View>
                     
                     <View style={styles.options}>
@@ -110,8 +113,11 @@ export default class HomeScreen extends React.Component{
           </View>
           </View>
       </View>
-           </LinearGradient> 
-           </View>
+
+
+      </LinearGradient>      
+            </View>
+            </View>
         );
     }
 }
@@ -121,7 +127,7 @@ const styles=StyleSheet.create({
     flex: 1
  },
  categories:{
-   marginTop:10,
+   marginTop:15,
     height:40,
     //backgroundColor:'yellow',
    // alignItems:'center',
@@ -168,6 +174,7 @@ const styles=StyleSheet.create({
    height:'30%',
    backgroundColor:'#163d51',
    marginTop:10,
+   paddingTop: 10,
    marginRight:10,
    marginLeft:10,
    borderRadius:10,
