@@ -5,7 +5,7 @@ import { LinearGradient } from 'expo';
 
 export default class App extends React.Component {
     render() {
-       const {navigation} = this.props
+      const {navigation} = this.props;
       return (
         
        <View style={{ backgroundColor: 'white', flex: 1}}>
@@ -21,12 +21,15 @@ export default class App extends React.Component {
 
              <View style={{ paddingLeft:12, marginTop:50}}>
              <Text style = {styles.caption}>PAYMENT METHOD</Text>
+
                 <View style={{ flex:1,paddingTop:25, marginTop:50}}>
-                <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('payment')}>
+                <TouchableOpacity  style = {{height:50,width:50}} onPress={() => navigation.navigate('payment')}  >
+
                     <Image style={styles.stretch}  
                     source={require('../Image/mastercard.png')} />
+
                </TouchableOpacity>
-                    <View style={{ flex:2,marginTop:-23, paddingLeft:15}}>
+                    <View style={{ flex:2,marginTop:-23, paddingLeft:35}}>
                     <Text style = {styles.text1}>Master Card ending **00</Text>
                     </View>
                 </View>              
@@ -56,8 +59,8 @@ export default class App extends React.Component {
 
                </View>
 
+               {/* ============Footer============== */}
 
-             {/*============footer=============*/}
 
              <View style = {{marginTop:5,backgroundColor:"transparent"}}>   
                 <Footer transparent style = {{marginTop:5,borderRadius:10,backgroundColor:"clear"}}>
@@ -88,8 +91,8 @@ export default class App extends React.Component {
     stretch: {
        marginLeft:18,
        marginTop:-50,
-       width: 45,
-       height: 25
+       width: 80,
+       height: 50
     },
     stretch2: {
       marginLeft:18,
@@ -118,6 +121,6 @@ export default class App extends React.Component {
         fontSize: 17,
         textAlign: 'center',
         paddingLeft:-15,
-        marginLeft:-15
+        marginLeft:-35
         }
  });

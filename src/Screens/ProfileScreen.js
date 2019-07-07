@@ -1,10 +1,12 @@
 
 import React, {Component} from 'react';
-import {StyleSheet,View, Text, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet,View, Text, Image, TouchableOpacity, AsyncStorage} from 'react-native';
 import { LinearGradient } from 'expo';
+import { Button } from 'native-base';
 
 export default class Profile extends Component {
-
+    signOut = async () => { AsyncStorage.clear() 
+        this.props.navigation.navigate('AuthLoading')}
     render(){
         return(
             <View style={styles.container}>
@@ -16,16 +18,17 @@ export default class Profile extends Component {
             <Image style={styles.avatar} source={{uri: 'https://bootdey.com/img/Content/avatar/avatar6.png'}}/>
             <View style={styles.body}>
               <View style={styles.bodyContent}>
-                <Text style={styles.name}>JOHN DOE</Text>
+                <Text style={styles.name}>MOHAMMED AMMAR</Text>
                 <Text style={styles.info}>Member / 30 </Text>
                 <Text style={styles.description}> A user from Karachi, frequents Imtiaz, Naheed and Agha's.</Text>
-                
+                <View style={{ marginTop: 20}}>
                 <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={styles.text1}>Previous Purchases</Text>  
-                </TouchableOpacity>              
+                </TouchableOpacity>             
                 <TouchableOpacity style={styles.buttonContainer}>
-                  <Text style={styles.text1}>Sign Out</Text> 
+                  <Button transparent onPress={this.signOut}><Text style={styles.text1}>Sign Out</Text></Button> 
                 </TouchableOpacity>
+              </View>
               </View>
           </View>
         </LinearGradient>      
@@ -49,36 +52,34 @@ export default class Profile extends Component {
       borderRadius: 63,
       borderWidth: 4,
       borderColor: "white",
-      marginBottom:10,
+      marginBottom:7,
       alignSelf:'center',
       position: 'absolute',
       marginTop:100
     },
     name:{
-      fontSize:28,
+      fontSize:24,
       color:"#042E44",
-      fontWeight:'600',
       fontFamily: 'AlNile'
     },
     body:{
-      marginTop:60,
+      marginTop:50,
     },
     bodyContent: {
-      flex: 1,
       alignItems: 'center',
       padding:30,
     },
     info:{
-      fontSize:16,
+      fontSize:18,
       color: "#042E44",
-      fontFamily: 'AlNile',
-      marginTop:10
+      fontFamily: 'Avenir',
+      marginTop:7
     },
     description:{
       fontSize:16,
       color: "#042E44",
-      marginTop:20,
-      fontFamily: 'AlNile',
+      marginTop:15,
+      fontFamily: 'Avenir',
       textAlign: 'center'
     },
     text1: {

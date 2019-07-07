@@ -232,8 +232,8 @@ AppTabNavigator.navigationOptions = ({ navigation }) => {
 
 const AppDrawerNavigator = createDrawerNavigator({
   Home: AppStackNavigator,
-  barcode:barcodeStackNavigator,
-  cart: cartStackNavigator
+  Barcode:barcodeStackNavigator,
+  Cart: cartStackNavigator
 })
 
 export default createSwitchNavigator({

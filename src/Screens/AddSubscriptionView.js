@@ -2,14 +2,19 @@ import React from 'react';
 import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import PaymentFormView from './PaymentFormView';
-
+import { LinearGradient } from 'expo';
 /**
  * The class renders a view with PaymentFormView
  */
 export default class AddSubscriptionView extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
+
+            <View style={styles.container}>
+  <View style={{ backgroundColor: 'white', flex: 1}}>
+          <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+           style={{ flex:1, borderRadius:0 }}>
+
         <ScrollView style={styles.container} ref={ref => (this.scrollViewRef = ref)}>
           <View style={styles.textWrapper}>
             <Text style={styles.infoText}>
@@ -34,7 +39,10 @@ export default class AddSubscriptionView extends React.Component {
         <KeyboardSpacer
           onToggle={() => { setTimeout(() => this.scrollViewRef.scrollToEnd({ animated: true }),0)} }
         />
-      </View>
+ 
+      </LinearGradient> 
+         </View>
+    </View>
     );
   }
 }
