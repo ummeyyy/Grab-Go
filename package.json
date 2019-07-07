@@ -15,7 +15,9 @@
     "react-navigation": "^2.18.3"
   },
   "devDependencies": {
-    "babel-preset-expo": "^5.0.0"
+    "babel-preset-expo": "^5.0.0",
+    "react-native-credit-card-input": "^0.4.1",
+    "react-native-keyboard-spacer": "^0.4.1"
   },
   "private": true
 }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import {View,StyleSheet,Text,Button, Image} from "react-native";
+import {View,StyleSheet,Text,Button, Image, TouchableOpacity} from "react-native";
 import { Container, Content, Footer,FooterTab, Item, Input, Icon, Left,Body,Right } from 'native-base';
 import { LinearGradient } from 'expo';
 
 export default class App extends React.Component {
     render() {
+       const {navigation} = this.props
       return (
         
        <View style={{ backgroundColor: 'white', flex: 1}}>
@@ -21,8 +22,10 @@ export default class App extends React.Component {
              <View style={{ paddingLeft:12, marginTop:50}}>
              <Text style = {styles.caption}>PAYMENT METHOD</Text>
                 <View style={{ flex:1,paddingTop:25, marginTop:50}}>
-                    <Image style={styles.stretch}
+                <TouchableOpacity activeOpacity = { .5 } onPress={() => navigation.navigate('payment')}>
+                    <Image style={styles.stretch}  
                     source={require('../Image/mastercard.png')} />
+               </TouchableOpacity>
                     <View style={{ flex:2,marginTop:-23, paddingLeft:15}}>
                     <Text style = {styles.text1}>Master Card ending **00</Text>
                     </View>
@@ -33,15 +36,11 @@ export default class App extends React.Component {
              
              
              <View style={{ paddingTop:20,paddingLeft:12}}>
-
                 <Text style = {styles.caption}>ITEMS</Text>
              </View>
-
-              <View style={{ paddingTop:15,marginTop:15,flexDirection:"row"}}>
-                    
+              <View style={{ paddingTop:15,marginTop:15,flexDirection:"row"}}>                
                     <Image style={styles.stretch2} source={require('../Image/scarf.png')} />
-                    
-                    <View style={{ marginTop:15,paddingLeft:40}}>
+                                        <View style={{ marginTop:15,paddingLeft:40}}>
                     <Text style = {styles.text1}>Red Cotton Scarf</Text>
                     <Text style = {styles.text1}>Rs:115</Text>
                     </View> 

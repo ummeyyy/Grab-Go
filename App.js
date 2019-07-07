@@ -36,7 +36,7 @@ import CartScreen from './src/Screens/CartScreen'
 import BarCodeScreen from './src/Screens/BarCodeScreen'
 import CheckoutScreen from './src/Screens/CheckoutScreen'
 import PurchaseSuccessful from './src/Screens/PurchaseSuccessful'
-
+import AddSubscriptionScreen from './src/Screens/AddSubscriptionScreen'
 
 const AuthStackNavigator = createStackNavigator({
   Welcome: WelcomeScreen,
@@ -93,6 +93,13 @@ const cartStackNavigator = createStackNavigator({
       tabBarVisible: false
     }  
   },
+  payment:{
+    screen:AddSubscriptionScreen,
+    navigationOptions:{
+     header:null,
+     tabBarVisible: false
+   }   
+ },
   buy:{
     screen:PurchaseSuccessful,
     navigationOptions:{
