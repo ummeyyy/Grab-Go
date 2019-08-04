@@ -17,7 +17,7 @@ export default class BlackFade extends React.Component {
              </View> 
              <View style = {{height:200}}> 
                 <Image style={styles.stretch}
-                source={require('D:/reactnative/grab-n-go-master/src/Image/BS.png')} />
+                source={require('../Image/BS.png')} />
              </View> 
              <View style = {{backgroundColor: 'white', width:200, height:50, paddingBottom: 8,paddingTop: 5, 
              borderColor: '#164794', borderRadius:1, borderWidth:2 , shadowRadius:4, shadowOpacity:0.34

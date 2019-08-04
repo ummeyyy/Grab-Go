@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import{StyleSheet, View, Image, Text, KeyboardAvoidingView, TextInput, TouchableOpacity,AsyncStorage} from 'react-native';
+import{StyleSheet, View, Image, Text, KeyboardAvoidingView, TextInput, TouchableOpacity,AsyncStorage,ActivityIndicator} from 'react-native';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { LinearGradient } from 'expo';
@@ -31,26 +31,64 @@ export default class App extends React.Component {
         this.state = ({
             email: '',
             password: '',
+            errorMessage:'',
+            loading:false
             // fullname: '',
             // contactnumber: ''
         })
     }
 
-    
+    onLoginSuccess = () => {
+        this.setState({
+          email: '', password: '', error: '', loading: false
+        })
+      }
+
+      renderButton = () => {
+        if (this.state.loading) {
+          return(
+              <View style={styles.spinnerStyle}>
+                 <ActivityIndicator size={"small"} />
+              </View>
+          );
+        }
+        return (
+            <TouchableOpacity style={styles.button}
+               
+            onPress={() => this.signUpUser(this.state.email.trim(), this.state.password,
+            
+            //  this.state.fullname,this.state.contactnumber/*
+            )}
+    >
+    {/* <Text style={{ fontWeight:'700', fontSize:17, color: 'white' }}> Sign Up</Text> */}
+    <Text style={styles.buttonText}> SIGNUP </Text>
+    </TouchableOpacity>
+        );
+      }
+
     signUpUser = (email, password) => {
+        console.log(email)
 
-        try {
+       
 
-            if (this.state.password.length < 6) {
-                alert("Please enter atleast 6 characters")
-                return;
-            }
+            // if (this.state.password.length < 6) {
+            //     alert("Please enter atleast 6 characters")
+            //     return;
+            // }
+            this.setState({ errorMessage: '', loading: true })
 
-            firebase.auth().createUserWithEmailAndPassword(email, password)
-        }
-        catch (error) {
-            console.log(error.toString())
-        }
+            firebase
+            .auth()
+            .createUserWithEmailAndPassword(email, password) 
+            .then(() => 
+            this.onLoginSuccess()
+            )
+            .then(() => 
+            this.props.navigation.navigate('HomeScreen')
+            )
+            .catch(error => this.setState({ errorMessage: error.message ,loading:false}))
+        
+        
     }
 
     render() {
@@ -114,14 +152,10 @@ export default class App extends React.Component {
                         />
                     </Item>
                  <View style={{marginBottom:220}}>  
-                <TouchableOpacity style={styles.button}
-                            onPress={() => this.signUpUser(this.state.password, this.state.email,
-                            //  this.state.fullname,this.state.contactnumber/*
-                            )}
-                    >
-                    {/* <Text style={{ fontWeight:'700', fontSize:17, color: 'white' }}> Sign Up</Text> */}
-                    <Text style={styles.buttonText}> SIGNUP </Text>
-                </TouchableOpacity>
+                 <View style = {{marginLeft:17,marginTop:20}}>
+                 <Text style = {{color:'red',fontWeight:'bold',fontSize:25}} >{this.state.errorMessage}</Text>
+                </View>
+                {this.renderButton()}
                 </View>
                 </Form>
                 </View>

@@ -46,7 +46,7 @@ export default class BlackFade extends React.Component {
                  paddingBottom: 5, height: 59, width: 185, justifyContent: "center", marginTop:5, marginLeft:5}}>
                  <View style = {{ flex: 1, flexDirection: 'row'}}>
                      <Image style={styles.stretch}
-                source={require('D:/reactnative/grab-n-go-master/src/Image/scarf.png')} /> 
+                source={require('../Image/scarf.png')} /> 
                 <View>
                      <Text style = {styles.result}>Red Cotton Scarf</Text>
                 </View>
@@ -63,7 +63,7 @@ export default class BlackFade extends React.Component {
                  paddingBottom: 5, height: 59, width: 185, justifyContent: "center", marginTop:5}}>
                  <View style = {{ marginLeft:7, flex: 1, flexDirection: 'row'}}>
                      <Image style={styles.stretch}
-                source={require('D:/reactnative/grab-n-go-master/src/Image/backpack.png')} /> 
+                source={require('../Image/backpack.png')} /> 
                 <View>
                      <Text style = {styles.result}>Hiking Bagpack</Text>
                 </View>

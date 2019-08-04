@@ -3,10 +3,12 @@ import React, {Component} from 'react';
 import {StyleSheet,View, Text, Image, TouchableOpacity, AsyncStorage} from 'react-native';
 import { LinearGradient } from 'expo';
 import { Button } from 'native-base';
+import * as firebase from 'firebase';
 
 export default class Profile extends Component {
     signOut = async () => { AsyncStorage.clear() 
-        this.props.navigation.navigate('AuthLoading')}
+      firebase.auth().signOut()
+      this.props.navigation.navigate('AuthLoading')}
     render(){
         return(
             <View style={styles.container}>
