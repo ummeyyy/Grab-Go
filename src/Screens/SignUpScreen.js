@@ -1,112 +1,175 @@
 import React, { Component } from 'react';
 import{StyleSheet, View, Image, Text, KeyboardAvoidingView, TextInput, TouchableOpacity,AsyncStorage} from 'react-native';
+import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { LinearGradient } from 'expo';
+import * as firebase from 'firebase';
 
-export default class SignUpScreen extends React.Component{
+//initializing firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAOnNkALQ9rZzc-wNacJ4lXjLjE_aQnr-A",
+  authDomain:  "reactfirebase-a3d77.firebaseapp.com",
+  databaseURL: "https://reactfirebase-a3d77.firebaseio.com",
+  projectId: "reactfirebase-a3d77",
+  storageBucket: "",
+};
 
-    signIn = async () => {
-        await AsyncStorage.setItem('userToken', 'varun')
+// firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-        this.props.navigation.navigate('App')
+export default class App extends React.Component {
+
+    // signIn = async () => {
+    //     await AsyncStorage.setItem('userToken', 'varun')
+
+    //     this.props.navigation.navigate('App')
+    // }
+ 
+    constructor(props) {
+        super(props)
+
+        this.state = ({
+            email: '',
+            password: '',
+            // fullname: '',
+            // contactnumber: ''
+        })
     }
 
-  render () {
-     return (
-       
-     
-     <View style={styles.container}>
-                <View style={styles.signup}>
+    
+    signUpUser = (email, password) => {
 
-                    <Text style={styles.header}>  SignUp </Text>
+        try {
 
-                    <TextInput style={styles.textinput} 
-                    placeholder="User Name"  
-                    underlineColorAndroid={'transparent'} 
-                    />
+            if (this.state.password.length < 6) {
+                alert("Please enter atleast 6 characters")
+                return;
+            }
 
-                    <TextInput style={styles.textinput} 
-                    placeholder="Your Email"  
-                    underlineColorAndroid={'transparent'} 
-                    
-                    />  
-
-                    
-                    <TextInput style={styles.textinput} 
-                    placeholder="Password"  
-                    underlineColorAndroid={'transparent'}
-                    secureTextEntry={true} 
-                    />  
-
-                    <TouchableOpacity style={styles.button} onPress={this.signIn}>
-                        <Text style={styles.btntext}> Sign Up</Text>
-                    </TouchableOpacity>
-
-
-                </View>
-                </View>
-        
-     );
+            firebase.auth().createUserWithEmailAndPassword(email, password)
+        }
+        catch (error) {
+            console.log(error.toString())
+        }
     }
+
+    render() {
+        return (
+
+            <KeyboardAwareScrollView
+            style={{ backgroundColor: 'transparent' }}
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            contentContainerStyle={styles.LinearGradient}
+            scrollEnabled={false}
+          >
+
+        <Container style={{ backgroundColor: 'white', flex: 1}}>
+          <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+           style={{ flex:1,padding: 12, borderRadius:0 }}>
+
+           <View style={styles.logoContainer}>
+                 <Image 
+                style={styles.logo} 
+                source={require('../Image/logo.png')}/>
+                <Text style={styles.title}>  Grab & Go </Text>
+                </View> 
+
+ 
+            <View style={styles.container}>
+                <Form>
+                {/* <Item floatingLabel>
+                        <Label style={{color:'white'}}>Full Name</Label>
+                        <Input style ={{color: 'white'}}
+                            autoCorrect={false}
+                            autoCapitalize="words"
+                            onChangeText={(fullname) => this.setState({ fullname })}
+                        />
+                    </Item>
+
+                <Item floatingLabel>
+                        <Label style={{color:'white'}}>Contact Number</Label>
+                        <Input style ={{color: 'white'}}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={(contactnumber) => this.setState({ contactnumber })}
+                        />
+                    </Item> */}
+
+                <Item floatingLabel>
+                        <Label style={{color:'white'}}>Email</Label>
+                        <Input style ={{color: 'white'}}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={(email) => this.setState({ email })}
+                        />
+                    </Item>
+
+                <Item floatingLabel>
+                        <Label style={{color:'white'}}>Password</Label>
+                        <Input style ={{color: 'white'}}
+                            secureTextEntry={true}
+                            autoCorrect={false}
+                            autoCapitalize="none"
+                            onChangeText={(password) => this.setState({ password })}
+                        />
+                    </Item>
+                 <View style={{marginBottom:220}}>  
+                <TouchableOpacity style={styles.button}
+                            onPress={() => this.signUpUser(this.state.password, this.state.email,
+                            //  this.state.fullname,this.state.contactnumber/*
+                            )}
+                    >
+                    {/* <Text style={{ fontWeight:'700', fontSize:17, color: 'white' }}> Sign Up</Text> */}
+                    <Text style={styles.buttonText}> SIGNUP </Text>
+                </TouchableOpacity>
+                </View>
+                </Form>
+                </View>
+
+            </LinearGradient>
+            </Container>
+    </KeyboardAwareScrollView>
+    );
+}
 }
 
 const styles=StyleSheet.create({
     container: {
         flex: 1,
-       justifyContent: 'center',
-       paddingLeft:60,
-       paddingRight:60,
-    //alignItems: 'center',
-      backgroundColor: '#163d51',
-     },
-    signup: {
-            alignSelf: 'stretch'
+        padding: 10,
+        justifyContent:'center'
+       },
+    buttonText:{
+        textAlign:'center',
+        fontWeight:'800',
+        color:'#2D637F',
+        margin: 8
     },
-    header:{
-        fontSize:24,
-        color: '#fff',
-        paddingBottom:10,
-        marginBottom:40,
-        borderBottomColor: '#199187',
-        borderBottomWidth:1
-    },
-    textinput:{
-        alignSelf:'stretch',
-        height:40,
-        marginBottom:30.,
-        color:'#fff',
-        borderBottomColor: '#f8f8f8',
-        borderBottomWidth:1
-    },
-    button:{
-        alignSelf:'stretch',
-        alignItems:'center',
-        padding:20,
-        backgroundColor:'#fff',
-        marginTop:30
-    },
-    btntext:{
-        color:'#163d51',
-        fontWeight: 'bold'
-    }, logoContainer:{
+   button:{
+       alignItems: 'center',
+       backgroundColor: 'white',
+       height:50,
+       padding: 10,
+       marginTop: 20,
+       // marginLeft: 5,
+       // marginRight: 5,
+       borderRadius: 50,
+       color:'white'    
+   },  
+     logoContainer:{
         flex:1,
         alignItems:'center',
         justifyContent:'center',
-        flexGrow:1
-    
     },
     logo: {
-        width:150,
-        height:150,
-        marginRight:10
-    },
+        width:110,
+        height:110,
+        marginTop:-95
+    },      
     title:{
-        opacity:0.7,
+        opacity:0.9,
         fontWeight:'900',
-       // borderWidth:1.5,
-        borderRadius:2,
         fontSize:20,
-        color:'white'//'#ff6200'//'hsla(187, 100%, 40%,1)'
-        //borderStyle:'solid'
-    
-    },
-
+        color:'#042E44'    
+    }
 });

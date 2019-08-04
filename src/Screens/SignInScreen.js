@@ -1,6 +1,17 @@
 import React, { Component } from 'react';
 import{StyleSheet, View, Image, Text, KeyboardAvoidingView,TextInput, StatusBar, TouchableOpacity,AsyncStorage} from 'react-native';
+import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base'
 
+import * as firebase from 'firebase';
+
+//initializing firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAOnNkALQ9rZzc-wNacJ4lXjLjE_aQnr-A",
+  authDomain:  "reactfirebase-a3d77.firebaseapp.com",
+  databaseURL: "https://reactfirebase-a3d77.firebaseio.com",
+  projectId: "reactfirebase-a3d77",
+  storageBucket: "",
+};
 export default class SignInScreen extends React.Component{
 
     signIn = async () => {
