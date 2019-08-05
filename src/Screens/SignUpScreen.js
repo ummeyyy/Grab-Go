@@ -3,19 +3,19 @@ import{StyleSheet, View, Image, Text, KeyboardAvoidingView, TextInput, Touchable
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { LinearGradient } from 'expo';
-import * as firebase from 'firebase';
+import firebase from '../Firebase/firebase';
 
-//initializing firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAOnNkALQ9rZzc-wNacJ4lXjLjE_aQnr-A",
-  authDomain:  "reactfirebase-a3d77.firebaseapp.com",
-  databaseURL: "https://reactfirebase-a3d77.firebaseio.com",
-  projectId: "reactfirebase-a3d77",
-  storageBucket: "",
-};
+// //initializing firebase
+// const firebaseConfig = {
+//   apiKey: "AIzaSyAOnNkALQ9rZzc-wNacJ4lXjLjE_aQnr-A",
+//   authDomain:  "reactfirebase-a3d77.firebaseapp.com",
+//   databaseURL: "https://reactfirebase-a3d77.firebaseio.com",
+//   projectId: "reactfirebase-a3d77",
+//   storageBucket: "",
+// };
 
+// // firebase.initializeApp(firebaseConfig);
 // firebase.initializeApp(firebaseConfig);
-firebase.initializeApp(firebaseConfig);
 
 export default class App extends React.Component {
 
