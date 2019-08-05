@@ -54,15 +54,11 @@ export default class App extends React.Component {
         }
         return (
             <TouchableOpacity style={styles.button}
-               
-            onPress={() => this.signUpUser(this.state.email.trim(), this.state.password,
-            
+            onPress={() => this.signUpUser(this.state.email.trim(), this.state.password,            
             //  this.state.fullname,this.state.contactnumber/*
-            )}
-    >
-    {/* <Text style={{ fontWeight:'700', fontSize:17, color: 'white' }}> Sign Up</Text> */}
-    <Text style={styles.buttonText}> SIGNUP </Text>
-    </TouchableOpacity>
+            )}>
+                <Text style={styles.buttonText}> SIGNUP </Text>
+            </TouchableOpacity>
         );
       }
 
@@ -151,15 +147,18 @@ export default class App extends React.Component {
                             onChangeText={(password) => this.setState({ password })}
                         />
                     </Item>
+
                  <View style={{marginBottom:220}}>  
                  <View style = {{marginLeft:17,marginTop:20}}>
-                 <Text style = {{color:'red',fontWeight:'bold',fontSize:25}} >{this.state.errorMessage}</Text>
+                 <Text style = {{color:'#AD1114',fontWeight:'500',fontSize:14}} >{this.state.errorMessage}</Text>
                 </View>
                 {this.renderButton()}
+                <TouchableOpacity onPress = {() => {this.props.navigation.navigate('SignIn')}}>
+                    <Text style={styles.signupText}>  Already have an account? Login!</Text>
+                </TouchableOpacity>
                 </View>
                 </Form>
                 </View>
-
             </LinearGradient>
             </Container>
     </KeyboardAwareScrollView>
@@ -199,7 +198,14 @@ const styles=StyleSheet.create({
         width:110,
         height:110,
         marginTop:-95
-    },      
+    },   
+     signupText:{
+        paddingTop: 20,
+        color: '#DEDEDE',
+        alignSelf: 'center',
+        fontWeight: '300',
+        fontSize: 14
+      },     
     title:{
         opacity:0.9,
         fontWeight:'900',

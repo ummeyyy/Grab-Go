@@ -7,17 +7,22 @@ import {
     ActivityIndicator
 } from "react-native";
 
+import firebase from '../Firebase/firebase';
 
 class AuthLoadingScreen extends Component {
     constructor(){
         super()
         // this.loadApp()
     }
-    loadApp = async()=>{
+     loadApp = async()=>{
         const userToken = await AsyncStorage.getItem('userToken')
         this.props.navigation.navigate(userToken ? 'App' : 'Auth')
     }
-
+    componentDidMount() {
+        firebase.auth().onAuthStateChanged(user => {
+          this.props.navigation.navigate(user ? 'HomeScreen' : 'Welcome')
+        })
+    }
 
     render() {
         return (
