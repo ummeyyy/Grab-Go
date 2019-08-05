@@ -11,7 +11,7 @@ import {
 class AuthLoadingScreen extends Component {
     constructor(){
         super()
-        // this.loadApp()
+        this.loadApp()
     }
     loadApp = async()=>{
         const userToken = await AsyncStorage.getItem('userToken')

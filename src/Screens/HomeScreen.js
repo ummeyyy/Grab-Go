@@ -1,204 +1,363 @@
-import React, {Component} from 'react';
-import {StyleSheet,View, Text, StatusBar, Image,ScrollView} from 'react-native';
-import { LinearGradient } from 'expo';
+import React from "react";
+import {
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  Dimensions,
+  View,
 
-export default class HomeScreen extends React.Component{
-    render(){
-        return(
-            <View style={styles.container}>
+} from "react-native";
+import { Font } from 'expo';
 
-<View style={{ backgroundColor: 'white', flex: 1}}>
-          <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
-           style={{ flex:1, borderRadius:0 }}>
+import { Button, ThemeProvider, Image } from "react-native-elements";
+import { Ionicons } from "@expo/vector-icons";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 
-{/* ===================== CATEGORIES ========================== */}
-               <View style={styles.categories}>
-                <Text style={styles.text}> Categories </Text>
-                 </View>
-                <View style={styles.top}>
-                <ScrollView horizontal = {true} showsHorizontalScrollIndicator = {false} style = {{paddingStart:5,paddingEnd:5}} >
-                <View style={styles.options}> 
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/scarf.jpg')}/>
-                    </View> 
+const theme = {
+  colors: {
+    primary: "#000",
+  },
+};
 
-                    <View style={styles.options}>
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/sale.png')}/>
+const productsData = [
+  {
+    key: "1",
+    title: "apparel",
+    picture:
+      "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Catty-Back-Black-800x1200.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  },
+  {
+    key: "2",
+    title: "food_grocery",
+    picture:
+      "https://wondermedia.ru/wp-content/uploads/2017/12/Product_01_fb04f962-9a33-4a96-bb20-e8f7f9c731d3_900x.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  },
+  {
+    key: "3",
+    title: "pharmacy",
+    picture:
+      "https://wondermedia.ru/wp-content/uploads/2017/12/product_01_3e23188e-6a88-4ffe-b99c-52b233901739_900x.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  },
+  {
+    key: "4",
+    title: "health_beauty",
+    picture: "https://wondermedia.ru/wp-content/uploads/2017/12/BLONDE-800x1200.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  },
+  {
+    key: "5",
+    title: "back_to_school",
+    picture: "https://wondermedia.ru/wp-content/uploads/2017/12/BLONDE-800x1200.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  },
+  {
+    key: "6",
+    title: "home_appliances",
+    picture: "https://wondermedia.ru/wp-content/uploads/2017/12/BLONDE-800x1200.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  },
+];
+
+export default class HomeScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fontLoaded: false,
+    };
+  
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'space-mono-regular': require('../../assets/fonts/SpaceMono-Regular.ttf'),
+      'work-sans-bold': require('../../assets/fonts/WorkSans-Bold.ttf'),
+      'work-sans-regular': require('../../assets/fonts/WorkSans-Regular.ttf'),
+      'work-sans-semibold': require('../../assets/fonts/WorkSans-SemiBold.ttf'),
+    });
+
+    this.setState({ fontLoaded: true })
+  }
+  static navigationOptions = ({ navigation }) => ({
+    headerStyle: {
+      backgroundColor: "transparent",
+      borderBottomWidth: 0,
+      marginHorizontal: 24,
+      elevation: 0,
+    },
+    headerTransparent: true,
+    title: "",
+    headerTitleStyle: {
+      // fontFamily: "work-sans-semibold",
+      fontSize: 18,
+      textAlign: "center",
+      flex: 1,
+    },
+    headerLeft: null,
+  });
+
+  render() {
+    return (
+      <ThemeProvider theme={theme}>
+        <KeyboardAwareScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={styles.contentContainer}
+        >
+          <View style={styles.container}>
+            <View style={styles.headerBannerContainer}>
+              <Text style={styles.headerTextStyle}>Spend More Save more</Text>
+              <View style={styles.discountBannerContainer}>
+                <FlatList
+                  data={[
+                    { text: "5% for Women T-shirts" },
+                    { text: "5% for Women" },
+                    { text: "5% for Women T-shirts" },
+                  ]}
+                  numColumns={2}
+                  keyExtractor={(item, index) => index.toString()}
+                  renderItem={({ item, index }) => (
+                    <View style={styles.saleBannerTextContainer}>
+                      <Text style={styles.saleBannerText}>{item.text}</Text>
                     </View>
-                    
-                    <View style={styles.options}>
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/backapck.jpg')}/>
-                    </View>
-                    
-                    <View style={styles.options}>
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/Appraisal.png')}/>
-                    </View>
-                    <View style={styles.options}>
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/sale.png')}/>
-                    </View>
-                    
-                    <View style={styles.options}>
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/backapck.jpg')}/>
-                    </View>
-                    
-                    <View style={styles.options}>
-                      <Image 
-                        style={styles.images} 
-                        source={require('../Image/Appraisal.png')}/>
-                    </View>
-
-</ScrollView>
-                     
-          
-                </View>
-           
- {/* ===================== CATGORIES TEXT ========================== */}       
-                <View style={styles.optionNames}> 
-                <Text style={styles.optionNamesText}> Apparel </Text>
-                <Text style={styles.optionNamesText}> Cosmetics </Text>
-                <Text style={styles.optionNamesText}> Shoes </Text>
-                <Text style={styles.optionNamesText}> Stationary </Text>                
-                </View>
-
-{/*========================= DISCOVER =======================*/}
-            <View style={styles.center}>
-              <Text style={styles.text}> Discover </Text>
-            </View> 
-            <View style={styles.discover}> 
-
+                  )}
+                />
+              </View>
             </View>
-{/* ===================== BOTTOM ========================== */}
-
-    <View style={styles.bottom}>
-
-          <View style={styles.bottomItem}>
-          
-            <View style={styles.bottomItemInner}>
-            
+            <FlatList
+              style={styles.productsGridContainer}
+              data={productsData}
+              numColumns={2}
+              keyExtractor={(item, index) => index.toString()}
+              renderItem={({ item, index }) => (
+                <TouchableOpacity
+                  style={styles.productGridItem}
+                  onPress={() => this.props.navigation.navigate("Product")}
+                >
+                  <Image style={styles.imageProductGridItem} source={{ uri: item.picture }} />
+                  <View style={[styles.titleProductGridItemContainer]}>
+                    <Text style={[styles.titleProductGridItem]}>{item.title}</Text>
+                  </View>
+                  <View style={styles.priceRowRelated}>
+                    <Text style={styles.actualPriceRelated}>{item.price}</Text>
+                  </View>
+                </TouchableOpacity>
+              )}
+            />
           </View>
-          <View style={styles.bottomItemInner}>
-          </View>
-          </View>
-         
-
-          <View style={styles.bottomItem}>
-            <View style={styles.bottomItemInner}>
-          </View>
-          <View style={styles.bottomItemInner}>
-          </View>
-          </View>
-          
-
-          <View style={styles.bottomItem}>
-            <View style={styles.bottomItemInner}>
-          </View>
-          <View style={styles.bottomItemInner}>
-          </View>
-          </View>
-          <View style={styles.bottomItem}>
-            <View style={styles.bottomItemInner}>
-          </View>
-          <View style={styles.bottomItemInner}>
-          </View>
-          </View>
-      </View>
-
-
-      </LinearGradient>      
-            </View>
-            </View>
-        );
-    }
+        </KeyboardAwareScrollView>
+      </ThemeProvider>
+    );
+  }
 }
 
-const styles=StyleSheet.create({
- container:{
-    flex: 1
- },
- categories:{
-   marginTop:15,
-    height:40,
-    //backgroundColor:'yellow',
-   // alignItems:'center',
-    justifyContent:'center'
- },
- text:{
-    fontSize:25,
- },
-  top:{
-    //borderRadius:4,
-    // marginLeft:2,
-    // marginRight:2,
-    flexDirection:'row',
-    height:'12%',
-    alignItems:'center',
-    justifyContent:'center',
-    backgroundColor:'#163d51',//'hsla(187, 100%, 40%,1)',
-    
- },
- images:{
-   
-   marginLeft:15,
-   marginRight:5,
-   width:70,
-   height:70,
-   borderRadius:70/2,
-   borderWidth:2,
-   borderColor:'#eee',
-   backgroundColor:'#163d51',//'hsla(187, 100%, 40%,1)',
-     },
- optionNames:{
-   flexDirection:'row',
-    // textAlign:'center',
-    //  fontWeight:'20',
-     //color:'white',
-     backgroundColor:'#163d51'
- },
- optionNamesText:{
-   color:'white',
-   paddingLeft:25
+export const { width, height } = Dimensions.get("window");
 
- },
- discover:{
-   height:'30%',
-   backgroundColor:'#163d51',
-   marginTop:10,
-   paddingTop: 10,
-   marginRight:10,
-   marginLeft:10,
-   borderRadius:10,
-   borderColor:'#163d51',
-   borderWidth:4,
-
- },
- bottom:{
-   height:'75%',
-  // backgroundColor:'yellow',
-   flexDirection: 'row',
-   flexWrap: 'wrap',
-   padding:5
- },
- bottomItem:{
-  width:'50%',
-  height:'50%',
- 
- },
- bottomItemInner:{
-   flex:1,
-   backgroundColor:'#163d51',
-   margin:3,
-   borderRadius:6
- }
-
+const styles = StyleSheet.create({
+  headerBackButton: {
+    marginLeft: 24,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    paddingHorizontal: 24,
+  },
+  line: {
+    width: "100%",
+    height: 1,
+    backgroundColor: "#000",
+  },
+  headerBannerContainer: {
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 48,
+  },
+  headerTextStyle: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 48,
+    textAlign: "center",
+    zIndex: 10,
+    lineHeight: 48,
+    textTransform: "uppercase",
+  },
+  discountBannerContainer: {
+    paddingVertical: 28,
+    zIndex: 1,
+    height: 180,
+    flex: 1,
+    width: "100%",
+    backgroundColor: "#61ED7B",
+    justifyContent: "space-around",
+    marginTop: -70,
+    alignItems: "flex-end",
+    flexDirection: "row",
+  },
+  saleBannerTextContainer: {
+    paddingVertical: 8,
+    marginLeft: 18,
+    width: "50%",
+    borderBottomWidth: 1,
+  },
+  saleBannerText: {
+    // fontFamily: "work-sans-semibold",
+    fontSize: 12,
+  },
+  rightSalesTextContainer: {},
+  categoryBannerContainer: {
+    marginVertical: 24,
+  },
+  backgroundContainer: {
+    height: 395,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  textInsideCategory: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 48,
+    textTransform: "uppercase",
+  },
+  productsGridContainer: {
+    marginTop: 24,
+    marginHorizontal: -8,
+    flexDirection: "column",
+  },
+  productGridItem: {
+    flex: 0.5,
+    marginHorizontal: 8,
+    marginBottom: 24,
+  },
+  imageProductGridItem: {
+    width: "100%",
+    height: 230,
+  },
+  priceRowRelated: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 8,
+  },
+  actualPriceRelated: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 15,
+    color: "#000",
+    marginRight: 8,
+  },
+  oldPriceRelated: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 9,
+    color: "#646464",
+    textDecorationLine: "line-through",
+  },
+  titleProductGridItemContainer: {
+    marginTop: 16,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  titleProductGridItem: {
+    maxWidth: 130,
+    // fontFamily: "work-sans",
+    fontSize: 12,
+    textAlign: "center",
+    backgroundColor:"#646464",
+    color:'yellow'
+  },
+  titleButtonStyle: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 9,
+    flex: 2,
+    paddingBottom: 0,
+    paddingTop: 0,
+  },
+  appleLogoButtonContainer: {
+    borderLeftWidth: 1,
+    borderLeftColor: "#fff",
+    textAlign: "center",
+    flexDirection: "row",
+    justifyContent: "center",
+    flex: 1,
+  },
+  priceInsideButtonText: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 9,
+    color: "#fff",
+  },
+  categoryDiscountBanner: {
+    backgroundColor: "#F05829",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderRadius: 0,
+    paddingHorizontal: 32,
+    paddingVertical: 40,
+  },
+  titleCategoryDiscountBanner: {
+    textAlign: "left",
+    // fontFamily: "work-sans-bold",
+    fontSize: 18,
+    color: "#000",
+  },
+  brandsContainer: {
+    backgroundColor: "#f8f8f8",
+    marginHorizontal: -24,
+    paddingHorizontal: 24,
+  },
+  brandsHeaderContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomWidth: 1,
+    alignItems: "center",
+    paddingVertical: 16,
+  },
+  brandsHeaderText: {
+    // fontFamily: "work-sans",
+    fontSize: 14,
+    color: "#000",
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingRight: 16,
+  },
+  brandsHeaderButton: {
+    backgroundColor: "transparent",
+    padding: 0,
+  },
+  tagsContainer: {
+    paddingVertical: 26,
+  },
+  tagStyle: {
+    paddingVertical: 6,
+    paddingHorizontal: 12,
+    borderRadius: 13,
+    borderWidth: 1,
+    marginRight: 10,
+    marginBottom: 10,
+    // fontFamily: "work-sans-semibold",
+    fontSize: 12,
+  },
+  newArrivalsContainer: {
+    marginTop: 32,
+  },
+  imageProductGridItemFirst: {
+    width: "100%",
+    height: 390,
+  },
+  actualPriceRelatedFirst: {
+    // fontFamily: "work-sans-bold",
+    fontSize: 21,
+    color: "#000",
+  },
+  titleProductGridItemFirst: {
+    maxWidth: 130,
+    // fontFamily: "work-sans",
+    fontSize: 18,
+    textAlign: "center",
+  },
 });

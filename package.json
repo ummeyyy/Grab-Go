@@ -16,11 +16,16 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-native-firebase": "^5.5.6",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
-    "react-native-keyboard-aware-scrollview": "^2.0.0",
     "react-native-linear-gradient": "^2.5.4",
     "react-native-settings-components": "0.0.2",
     "react-native-settings-screen": "^2.1.2",
-    "react-navigation": "^2.18.3"
+    "react-navigation": "^2.18.3",
+    "@expo/samples": "2.1.1",
+    "axios": "^0.18.0",
+    "react-native-elements": "^1.1.0",
+    "react-native-keyboard-aware-scrollview": "^2.0.0",
+    "react-native-swipeout": "^2.3.6",
+    "react-native-swiper-flatlist": "^1.0.10"
   },
   "devDependencies": {
     "babel-preset-expo": "^5.0.0",
