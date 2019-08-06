@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     header: {
       paddingTop: 45,
       opacity:0.9,
-      fontWeight:'900',
+      fontWeight:'700',
       fontSize: totalSize (6) ,
       color: '#042E44',
       marginBottom: 30,
@@ -204,5 +204,10 @@ const styles = StyleSheet.create({
       fontWeight:'900',
       fontSize:20,
       color:'#042E44'    
-  }
+  },
+    nameInput: {
+      flexDirection: "row",
+      justifyContent: "space-evenly",
+      alignItems: "center"
+    }
 });
