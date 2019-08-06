@@ -49,6 +49,7 @@ export default class CartScreen extends React.Component {
       fontSize: 18,
       textAlign: "center",
       flex: 1,
+      color: '#042E44',
     },
   });
 
@@ -86,7 +87,7 @@ export default class CartScreen extends React.Component {
                             onPress={() => this.deleteItemById(item.key)}
                             style={styles.deleteIconContainer}
                           >
-                            <Ionicons name="md-trash" size={28} color="#F05829" />
+                            <Ionicons name="md-trash" size={30} color="#F05829" />
                           </TouchableOpacity>
                         ),
                         backgroundColor: "#fff",
@@ -113,7 +114,7 @@ export default class CartScreen extends React.Component {
                         <Button
                           buttonStyle={styles.plusButton}
                           titleStyle={styles.titleButtonStyle}
-                          icon={<Ionicons name="ios-add" size={18} color="#000" />}
+                          icon={<Ionicons name="ios-add" size={18} color="#042E44" />}
                         />
                         <View style={styles.countValueContainer}>
                           <Text style={styles.countValueText}>1</Text>
@@ -121,7 +122,7 @@ export default class CartScreen extends React.Component {
                         <Button
                           buttonStyle={styles.minusButton}
                           titleStyle={styles.titleButtonStyle}
-                          icon={<Ionicons name="ios-remove" size={18} color="#000" />}
+                          icon={<Ionicons name="ios-remove" size={18} color="#042E44" />}
                         />
                       </View>
                     </View>
@@ -136,7 +137,7 @@ export default class CartScreen extends React.Component {
               icon={
                 <View style={styles.buttonIconContainer}>
                   <Text style={styles.totalButtonText}>Total</Text>
-                  <Text style={styles.totalButtonValue}>$ 412</Text>
+                  <Text style={styles.totalButtonValue}>$96</Text>
                 </View>
               }
               iconRight
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal: 24,
+    paddingHorizontal: 14,
   },
   line: {
     width: "100%",
@@ -175,7 +176,7 @@ const styles = StyleSheet.create({
   },
   deleteIconContainer: {
     flex: 1,
-    borderLeftColor: "#000",
+    borderLeftColor: "#042E44",
     borderLeftWidth: 1,
     alignItems: "flex-end",
     justifyContent: "center",
@@ -183,7 +184,7 @@ const styles = StyleSheet.create({
     marginLeft: 48,
   },
   swipeContainer: {
-    marginVertical: 32,
+    marginVertical: 38,
   },
   productContainer: {
     flexDirection: "row",
@@ -205,17 +206,19 @@ const styles = StyleSheet.create({
     fontFamily: "work-sans",
     fontSize: 16,
     marginBottom: 8,
+    color:'#042E44',
   },
   actualPrice: {
     fontFamily: "work-sans-bold",
     fontSize: 16,
     color: "#F05829",
-    marginRight: 8,
+    marginRight: 8,  
   },
   oldPrice: {
     fontFamily: "work-sans-bold",
     fontSize: 10,
     textDecorationLine: "line-through",
+    color:'#042E44',
   },
   productCountButtons: {
     paddingHorizontal: 8,
@@ -223,20 +226,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderRadius: 0,
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: "#042E44",
   },
   plusButton: {
     borderRadius: 0,
     backgroundColor: "transparent",
+    color:'#042E44',
   },
   minusButton: {
     borderRadius: 0,
     backgroundColor: "transparent",
+    color:'#042E44',
   },
   countValueContainer: {
     borderTopWidth: 1,
-    borderTopColor: "#000",
-    borderBottomColor: "#000",
+    borderTopColor: "#042E44",
+    borderBottomColor: "#042E44",
     borderBottomWidth: 1,
   },
   countValueText: {
@@ -247,6 +252,7 @@ const styles = StyleSheet.create({
     fontFamily: "work-sans-bold",
     fontSize: 18,
     paddingHorizontal: 48,
+    backgroundColor: '#042E44',
   },
   buttonIconContainer: {
     borderLeftWidth: 1,
@@ -256,12 +262,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
+    backgroundColor: '#042E44',
   },
   saveButton: {
     justifyContent: "space-around",
     borderRadius: 0,
     height: 55,
     marginBottom: 24,
+    backgroundColor: '#042E44',
   },
   totalButtonText: {
     color: "#fff",
