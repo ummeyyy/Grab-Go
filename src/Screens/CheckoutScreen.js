@@ -69,7 +69,7 @@ export default class CheckoutScreen extends React.Component {
         }
         iconRight
         containerStyle={styles.saveButtonContainer}
-        onPress={() => this.props.navigation.navigate("ThankForOrder")}
+        onPress={() => this.props.navigation.navigate("payment")}
       />
     );
   }

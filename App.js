@@ -31,6 +31,11 @@ import BarCodeScreen from './src/Screens/BarCodeScreen'
 import CheckoutScreen from './src/Screens/CheckoutScreen'
 import PurchaseSuccessful from './src/Screens/PurchaseSuccessful'
 import AddSubscriptionScreen from './src/Screens/AddSubscriptionScreen'
+import ProductScreen from './src/Screens/ProductScreen'
+import ProductInformationScreen from './src/Screens/ProductInformationScreen'
+
+
+
 
 const AuthStackNavigator = createStackNavigator({
   Welcome: WelcomeScreen,
@@ -128,10 +133,10 @@ const cartStackNavigator = createStackNavigator({
   },
   checkout:{
     screen:CheckoutScreen,
-    navigationOptions:{
-      header:null,
-      tabBarVisible: false
-    }  
+    // navigationOptions:{
+    //   header:null,
+    //   tabBarVisible: false
+    // }  
   },
   payment:{
     screen:AddSubscriptionScreen,
@@ -188,15 +193,15 @@ const AppTabNavigator = createBottomTabNavigator(
       )
     }
   },
-  Search: {
-    screen: SearchScreen,
-    navigationOptions: {
-      tabBarLabel: 'DISCOVER',
-      tabBarIcon: () => (
-        <Icon name="ios-search" size={24} />
-      )
-    }
-  },
+  // Search: {
+  //   screen: SearchScreen,
+  //   navigationOptions: {
+  //     tabBarLabel: 'DISCOVER',
+  //     tabBarIcon: () => (
+  //       <Icon name="ios-search" size={24} />
+  //     )
+  //   }
+  // },
   Cart: {
     screen: cartStackNavigator,
     navigationOptions: {
@@ -206,15 +211,15 @@ const AppTabNavigator = createBottomTabNavigator(
       )
     }
   },
-  Settings: {
-    screen: SettingsScreen,
-    navigationOptions: {
-      tabBarLabel: 'MORE',
-      tabBarIcon: () => (
-        <Icon name="ios-settings" size={24} />
-      )
-    }
-  },
+  // Settings: {
+  //   screen: SettingsScreen,
+  //   navigationOptions: {
+  //     tabBarLabel: 'MORE',
+  //     tabBarIcon: () => (
+  //       <Icon name="ios-settings" size={24} />
+  //     )
+  //   }
+  // },
   Profile: {
     screen: ProfileScreen,
     navigationOptions: {

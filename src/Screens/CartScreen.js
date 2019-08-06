@@ -141,7 +141,7 @@ export default class CartScreen extends React.Component {
               }
               iconRight
               containerStyle={styles.saveButtonContainer}
-              onPress={() => this.props.navigation.navigate("Checkout")}
+              onPress={() => this.props.navigation.navigate("checkout")}
             />
           </View>
         </KeyboardAwareScrollView>

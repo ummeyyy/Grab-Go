@@ -1,9 +1,8 @@
 import React from 'react';
 import {KeyboardAvoidingView , Text,StyleSheet, View, Image, TextInput, TouchableOpacity} from 'react-native';
-import {LinearGradient} from 'expo';
 import SignUpForm from '../components/SignUpForm';
-import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
-
+import { Container } from 'native-base';
+import {LinearGradient} from 'expo';
 
 
 export default class SignUpScreen extends React.Component {

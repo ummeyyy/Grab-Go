@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Image, TextInput, Dimensions,TouchableOpacity, keyboardType, Keyboard, ScrollView, ActivityIndicator } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
+import { width, height, totalSize } from 'react-native-dimension';
 import firebase from '../Firebase/firebase';
 import { Button, Text } from '../components';
 import '@firebase/firestore';
@@ -70,6 +71,11 @@ constructor(props){
       <View style={styles.formContainer}>
        
         <Text style={styles.header}> Login </Text>
+        <View style={styles.logoContainer}>
+            {/* <Image style={styles.logo} 
+                   source={require('../Image/logo.png')}/> */}
+                     <Text style={styles.title}>  Grab & Go </Text>
+        </View>
         <View>
         
         <Ionicons name={"ios-person"} size={28} color={'#0050a0'}
@@ -170,24 +176,24 @@ const styles = StyleSheet.create({
       fontSize: 16
     },
     header: {
-      paddingTop: 45,
+      paddingTop: 15,
       opacity:0.9,
       fontWeight:'700',
       fontSize: totalSize (6) ,
       color: '#042E44',
-      marginBottom: 30,
+      marginBottom:80,
       alignSelf: "center"
     },
     logoContainer:{
       flex:1,
       alignItems:'center',
       justifyContent:'center',
-      marginBottom: 30,
+      marginBottom: 100,
   },
   logo: {
       width:85,
       height:85,
-  }, 
+  },  
   signupText:{
       paddingTop: 20,
       color: '#DEDEDE',
@@ -195,10 +201,10 @@ const styles = StyleSheet.create({
       fontWeight: '300',
       fontSize: 14
     },    
-  title:{
+    title:{
       opacity:0.9,
       fontWeight:'900',
       fontSize:20,
-      color:'#042E44'    
+      color:'#042E44' 
   }
 });

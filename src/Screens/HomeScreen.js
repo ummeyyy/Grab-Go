@@ -10,7 +10,8 @@ import {
 
 } from "react-native";
 import { Font } from 'expo';
-
+import { Container } from 'native-base';
+import {LinearGradient} from 'expo';
 import { Button, ThemeProvider, Image } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
@@ -24,48 +25,42 @@ const theme = {
 const productsData = [
   {
     key: "1",
-    title: "apparel",
+    title: "APPAREL",
     picture:
-      "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Catty-Back-Black-800x1200.jpg",
-    price: "$ 32",
-    oldprice: "$ 64",
+      "http://todaybigdeal.com/wp-content/uploads/2018/09/Clothing_Accessories-1024x493-678x381.png",
+    totalitems: "256,000",
   },
   {
     key: "2",
-    title: "food_grocery",
+    title: "GROCERY & FOOD",
     picture:
-      "https://wondermedia.ru/wp-content/uploads/2017/12/Product_01_fb04f962-9a33-4a96-bb20-e8f7f9c731d3_900x.jpg",
-    price: "$ 32",
-    oldprice: "$ 64",
+      "http://ironmumkarla.com.au/wp-content/uploads/2016/04/grocery-shopping.jpg",
+      totalitems: "218,600",
   },
   {
     key: "3",
-    title: "pharmacy",
+    title: "PHARMACY",
     picture:
-      "https://wondermedia.ru/wp-content/uploads/2017/12/product_01_3e23188e-6a88-4ffe-b99c-52b233901739_900x.jpg",
-    price: "$ 32",
-    oldprice: "$ 64",
+      "https://pharmacytimes.s3.amazonaws.com/v1_media/SafeImages/Webdam%20Assets/pharmacy1.jpg",
+      totalitems: "150,000",
   },
   {
     key: "4",
-    title: "health_beauty",
-    picture: "https://wondermedia.ru/wp-content/uploads/2017/12/BLONDE-800x1200.jpg",
-    price: "$ 32",
-    oldprice: "$ 64",
+    title: "HEALTH & BEAUTY",
+    picture: "http://cosmeticsfit.com/wp-content/uploads/2017/02/Beautify-Clear-Acrylic-Cosmetic-Makeup-Holder-and-Organizer-with-Two-Sided-Mirror.jpg",
+    totalitems: "346,000",
   },
   {
     key: "5",
-    title: "back_to_school",
-    picture: "https://wondermedia.ru/wp-content/uploads/2017/12/BLONDE-800x1200.jpg",
-    price: "$ 32",
-    oldprice: "$ 64",
+    title: "BACK TO SCHOOL",
+    picture: "https://blog.bestbuy.ca/wp-content/uploads/2017/07/7-apps-back-to-school-shopping-story.jpg",
+    totalitems: "105,000",
   },
   {
     key: "6",
-    title: "home_appliances",
-    picture: "https://wondermedia.ru/wp-content/uploads/2017/12/BLONDE-800x1200.jpg",
-    price: "$ 32",
-    oldprice: "$ 64",
+    title: "HOME & APPLIANCES",
+    picture: "http://s21230.pcdn.co/wp-content/uploads/2017/04/List-of-the-Top-Household-Kitchen-Equipment-Suppliers-in-Sharjah-with-Contact-Details.jpg",
+    totalitems: "140,600",
   },
 ];
 
@@ -108,14 +103,17 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
+      <Container style={{ backgroundColor: 'white', flex: 1}}>
+      <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+       style={{ flex:1,padding: 12, borderRadius:0 }}>
       <ThemeProvider theme={theme}>
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainer}
-        >
+          contentContainerStyle={styles.contentContainer}>
+         
           <View style={styles.container}>
             <View style={styles.headerBannerContainer}>
-              <Text style={styles.headerTextStyle}>Spend More Save more</Text>
+              <Text style={styles.headerTextStyle}>Limited Time Offers!</Text>
               <View style={styles.discountBannerContainer}>
                 <FlatList
                   data={[
@@ -154,8 +152,11 @@ export default class HomeScreen extends React.Component {
               )}
             />
           </View>
+
         </KeyboardAwareScrollView>
       </ThemeProvider>
+      </LinearGradient>
+                </Container>
     );
   }
 }
@@ -196,7 +197,7 @@ const styles = StyleSheet.create({
     height: 180,
     flex: 1,
     width: "100%",
-    backgroundColor: "#61ED7B",
+    backgroundColor: "#042E44",
     justifyContent: "space-around",
     marginTop: -70,
     alignItems: "flex-end",
@@ -211,6 +212,7 @@ const styles = StyleSheet.create({
   saleBannerText: {
     // fontFamily: "work-sans-semibold",
     fontSize: 12,
+    color: 'white'
   },
   rightSalesTextContainer: {},
   categoryBannerContainer: {
@@ -264,12 +266,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   titleProductGridItem: {
-    maxWidth: 130,
+    maxWidth: 150,
     // fontFamily: "work-sans",
-    fontSize: 12,
+    fontSize: 14,
     textAlign: "center",
-    backgroundColor:"#646464",
-    color:'yellow'
+    backgroundColor:"#042E44",
+    color:'white'
   },
   titleButtonStyle: {
     // fontFamily: "work-sans-bold",
