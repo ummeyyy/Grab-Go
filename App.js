@@ -71,7 +71,53 @@ barcodeStackNavigator.navigationOptions = ({ navigation }) => {
     tabBarVisible
   };
 };
+const HomeStack = createStackNavigator({
+  Home: HomeScreen,
+  Product: ProductScreen,
+  ProductInformation: ProductInformationScreen,
+});
 
+HomeStack.navigationOptions = ({ navigation }) => ({
+  headerMode: "none",
+  navigationOptions: {
+    headerVisible: false,
+  },
+  tabBarVisible: ({ navigation }) => {
+    const { routeName } = navigation.state;
+    if (routeName === "SuccessReviewScreen") {
+      return false;
+    }
+    if (routeName === "WriteReview") {
+      return false;
+    }
+  },
+  tabBarOnPress: ({ navigation, defaultHandler }) => {
+    navigation.navigate("Home");
+    defaultHandler();
+  },
+  tabBarLabel: "Home",
+  tabBarIcon: ({ focused, tintColor }) => (
+    <TabBarIcon
+      focused={focused}
+      tintColor="#000"
+      name={Platform.OS === "ios" ? `ios-home${focused ? "" : ""}` : "md-home"}
+    />
+  ),
+  tabBarOptions: {
+    activeTintColor: "#F05829",
+    inactiveTintColor: "#000",
+    labelStyle: {
+      // fontFamily: "work-sans-semibold",
+      fontSize: 10,
+    },
+    style: {
+      height: 60,
+      paddingVertical: 7,
+      borderTopWidth: 0.5,
+      borderTopColor: "#bbb",
+    },
+  },
+});
 const cartStackNavigator = createStackNavigator({
   cart:{
     screen:CartScreen,
@@ -125,7 +171,7 @@ cartStackNavigator.navigationOptions = ({ navigation }) => {
 const AppTabNavigator = createBottomTabNavigator(
   {
   HomeScreen: {
-    screen: HomeScreen,
+    screen: HomeStack,
     navigationOptions: {
       tabBarLabel: 'HOME',
       tabBarIcon: () => (
@@ -197,43 +243,43 @@ tabBarOptions : {
   }
 )
 
-const AppStackNavigator = createStackNavigator({
-  AppTabNavigator: {
-    screen: AppTabNavigator,
-    navigationOptions: ({ navigation }) => ({
-      title: "Grab-&-Go",
-      headerLeft: (
-        <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
-          <View style={{ paddingHorizontal: 10 }}>
-            <Icon name="md-menu" size={24} />
-          </View>
-        </TouchableOpacity>
-      )
-    })
-  }
-})
+// const AppStackNavigator = createStackNavigator({
+//   AppTabNavigator: {
+//     screen: AppTabNavigator,
+//     navigationOptions: ({ navigation }) => ({
+//       title: "Grab-&-Go",
+//       headerLeft: (
+//         <TouchableOpacity onPress={() => navigation.toggleDrawer()}>
+//           <View style={{ paddingHorizontal: 10 }}>
+//             <Icon name="md-menu" size={24} />
+//           </View>
+//         </TouchableOpacity>
+//       )
+//     })
+//   }
+// })
 
-AppTabNavigator.navigationOptions = ({ navigation }) => {
-  let { routeName } = navigation.state.routes[navigation.state.index];
+// AppTabNavigator.navigationOptions = ({ navigation }) => {
+//   let { routeName } = navigation.state.routes[navigation.state.index];
 
-  // You can do whatever you like here to pick the title based on the route name
-  let headerTitle = routeName;
+//   // You can do whatever you like here to pick the title based on the route name
+//   let headerTitle = routeName;
 
-  return {
-    headerTitle,
-  };
-};
+//   return {
+//     headerTitle,
+//   };
+// };
 
-const AppDrawerNavigator = createDrawerNavigator({
-  Home: AppStackNavigator,
-  Barcode:barcodeStackNavigator,
-  Cart: cartStackNavigator
-})
+// const AppDrawerNavigator = createDrawerNavigator({
+//   Home: AppStackNavigator,
+//   Barcode:barcodeStackNavigator,
+//   Cart: cartStackNavigator
+// })
 
 export default createSwitchNavigator({
   AuthLoading: AuthLoadingScreen,
   Auth: AuthStackNavigator,
-  App: AppDrawerNavigator
+  App: AppTabNavigator
 })
 
 const styles = StyleSheet.create({

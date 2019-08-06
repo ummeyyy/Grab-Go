@@ -1,15 +1,11 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, TouchableOpacity, keyboardType, Keyboard, ActivityIndicator } from 'react-native';
+import { StyleSheet, View, Image, TextInput, Dimensions,TouchableOpacity, keyboardType, Keyboard, ScrollView, ActivityIndicator } from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import firebase from '../Firebase/firebase';
 import { Button, Text } from '../components';
-
-import { theme } from '../constants';
-
-import { Button, Text } from '../components';
-
 import '@firebase/firestore';
 
+import { theme } from '../constants';
 
 export default class LoginForm extends React.Component {
 constructor(props){
@@ -204,10 +200,5 @@ const styles = StyleSheet.create({
       fontWeight:'900',
       fontSize:20,
       color:'#042E44'    
-  },
-    nameInput: {
-      flexDirection: "row",
-      justifyContent: "space-evenly",
-      alignItems: "center"
-    }
+  }
 });
