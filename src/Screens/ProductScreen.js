@@ -305,8 +305,9 @@ const styles = StyleSheet.create({
   actualPrice: {
     fontFamily: "work-sans-bold",
     fontSize: 21,
-    color: "#000",
+    // color: "#000",
     marginRight: 8,
+    color: '#042E44',
   },
   oldPrice: {
     fontFamily: "work-sans-bold",
@@ -324,12 +325,14 @@ const styles = StyleSheet.create({
     fontFamily: "work-sans",
     fontSize: 18,
     textAlign: "center",
+    color: '#042E44',
   },
   productDesc: {
     marginVertical: 16,
     fontFamily: "work-sans",
     fontSize: 12,
     textAlign: "center",
+    color: '#042E44',
   },
   attributeContainer: {
     borderBottomWidth: 1,
@@ -351,10 +354,12 @@ const styles = StyleSheet.create({
     marginRight: 16,
     fontFamily: "work-sans",
     fontSize: 12,
+    color: '#042E44',
   },
   productTitleSize: {
     fontFamily: "work-sans-bold",
     fontSize: 18,
+    color: '#042E44',
   },
   tabsContainer: {
     marginTop: 16,
@@ -370,6 +375,7 @@ const styles = StyleSheet.create({
   titleTabButton: {
     fontFamily: "work-sans",
     fontSize: 12,
+    color: '#042E44',
   },
   relatedItemsHeadingContainer: {
     flexDirection: "row",
@@ -380,6 +386,7 @@ const styles = StyleSheet.create({
   relatedItemsHeading: {
     fontFamily: "work-sans-bold",
     fontSize: 14,
+    color: '#042E44',
   },
   relatedItemsCardsContainer: {
     marginLeft: 24,
@@ -429,6 +436,7 @@ const styles = StyleSheet.create({
     flex: 57,
     paddingBottom: 0,
     paddingTop: 0,
+    backgroundColor: '#042E44'
   },
   appleLogoButtonContainer: {
     borderLeftWidth: 1,
@@ -437,16 +445,19 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     flex: 43,
+    backgroundColor: '#042E44'
   },
   priceInsideButtonText: {
     fontFamily: "work-sans-bold",
     fontSize: 18,
     color: "#fff",
+    backgroundColor: '#042E44'
   },
   saveButton: {
     justifyContent: "space-around",
     borderRadius: 0,
     height: 55,
     marginTop: 32,
+    backgroundColor: '#042E44'
   },
 });

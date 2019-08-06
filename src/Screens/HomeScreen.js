@@ -27,7 +27,7 @@ const productsData = [
     key: "1",
     title: "APPAREL",
     picture:
-      "http://todaybigdeal.com/wp-content/uploads/2018/09/Clothing_Accessories-1024x493-678x381.png",
+      "http://www.menfashionhub.com/wp-content/uploads/2018/04/Accessories-Every-Man-Should-Have-In-His-Wardrobe.jpg",
     totalitems: "256,000",
   },
   {
@@ -53,7 +53,7 @@ const productsData = [
   {
     key: "5",
     title: "BACK TO SCHOOL",
-    picture: "https://blog.bestbuy.ca/wp-content/uploads/2017/07/7-apps-back-to-school-shopping-story.jpg",
+    picture: "https://lcumc.churchwebsitepress.org/wp-content/uploads/sites/148/2015/09/backtoschool.jpg",
     totalitems: "105,000",
   },
   {
@@ -103,32 +103,35 @@ export default class HomeScreen extends React.Component {
 
   render() {
     return (
-      <Container style={{ backgroundColor: 'white', flex: 1}}>
-      <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
-       style={{ flex:1,padding: 12, borderRadius:0 }}>
       <ThemeProvider theme={theme}>
         <KeyboardAwareScrollView
           showsVerticalScrollIndicator={false}
           contentContainerStyle={styles.contentContainer}>
          
           <View style={styles.container}>
+
             <View style={styles.headerBannerContainer}>
-              <Text style={styles.headerTextStyle}>Limited Time Offers!</Text>
-              <View style={styles.discountBannerContainer}>
-                <FlatList
+              <Text style={styles.headerTextStyle}>Limited Time Offers!!!</Text>
+               <View style={styles.discountBannerContainer}>
+                {/* <FlatList
                   data={[
-                    { text: "5% for Women T-shirts" },
-                    { text: "5% for Women" },
-                    { text: "5% for Women T-shirts" },
+                    // { text: "5% for Women T-shirts" },
+                    // { text: "5% for Women" },
+                    // { text: "5% for Women T-shirts" },
                   ]}
                   numColumns={2}
                   keyExtractor={(item, index) => index.toString()}
                   renderItem={({ item, index }) => (
                     <View style={styles.saleBannerTextContainer}>
                       <Text style={styles.saleBannerText}>{item.text}</Text>
+                      
                     </View>
                   )}
-                />
+                />  */}
+                  <View>
+                  <Image style={styles.headerBannerImages}
+                  source={require('../../assets/images/sale1.jpg')}/>
+                  </View>
               </View>
             </View>
             <FlatList
@@ -146,7 +149,7 @@ export default class HomeScreen extends React.Component {
                     <Text style={[styles.titleProductGridItem]}>{item.title}</Text>
                   </View>
                   <View style={styles.priceRowRelated}>
-                    <Text style={styles.actualPriceRelated}>{item.price}</Text>
+                    <Text style={styles.actualitem}>Total Items: {item.totalitems}</Text>
                   </View>
                 </TouchableOpacity>
               )}
@@ -155,8 +158,6 @@ export default class HomeScreen extends React.Component {
 
         </KeyboardAwareScrollView>
       </ThemeProvider>
-      </LinearGradient>
-                </Container>
     );
   }
 }
@@ -183,37 +184,43 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginTop: 48,
   },
+  headerBannerImages: {
+    marginTop: 29,
+    height:"100%",
+    width: 326,
+  },
   headerTextStyle: {
     // fontFamily: "work-sans-bold",
-    fontSize: 48,
+    fontSize: 25,
     textAlign: "center",
-    zIndex: 10,
-    lineHeight: 48,
-    textTransform: "uppercase",
-  },
+    zIndex: 12,
+    lineHeight: 28,
+    color: 'white',
+    fontWeight: '700',
+   },
   discountBannerContainer: {
     paddingVertical: 28,
-    zIndex: 1,
-    height: 180,
+    zIndex: 0,
+    height: 170,
     flex: 1,
     width: "100%",
     backgroundColor: "#042E44",
     justifyContent: "space-around",
-    marginTop: -70,
+    marginTop: -28,
     alignItems: "flex-end",
     flexDirection: "row",
   },
-  saleBannerTextContainer: {
-    paddingVertical: 8,
-    marginLeft: 18,
-    width: "50%",
-    borderBottomWidth: 1,
-  },
-  saleBannerText: {
-    // fontFamily: "work-sans-semibold",
-    fontSize: 12,
-    color: 'white'
-  },
+  // saleBannerTextContainer: {
+  //   paddingVertical: 8,
+  //   marginLeft: 18,
+  //   width: "50%",
+  //   borderBottomWidth: 1,
+  // },
+  // saleBannerText: {
+  //   // fontFamily: "work-sans-semibold",
+  //   fontSize: 12,
+  //   color: 'white'
+  // },
   rightSalesTextContainer: {},
   categoryBannerContainer: {
     marginVertical: 24,
@@ -254,12 +261,19 @@ const styles = StyleSheet.create({
     color: "#000",
     marginRight: 8,
   },
-  oldPriceRelated: {
+  actualitem: {
     // fontFamily: "work-sans-bold",
-    fontSize: 9,
-    color: "#646464",
-    textDecorationLine: "line-through",
+    fontSize: 15,
+    color: "#042E44",
+    fontWeight: '500',
+    marginRight: 8,
   },
+  // oldPriceRelated: {
+  //   // fontFamily: "work-sans-bold",
+  //   fontSize: 9,
+  //   color: "#646464",
+  //   textDecorationLine: "line-through",
+  // },
   titleProductGridItemContainer: {
     marginTop: 16,
     alignItems: "center",
@@ -267,10 +281,11 @@ const styles = StyleSheet.create({
   },
   titleProductGridItem: {
     maxWidth: 150,
-    // fontFamily: "work-sans",
+    //fontFamily: "work-sans",
     fontSize: 14,
     textAlign: "center",
     backgroundColor:"#042E44",
+    fontWeight: '600',
     color:'white'
   },
   titleButtonStyle: {
