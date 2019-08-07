@@ -72,11 +72,13 @@ constructor(props){
        
         <Text style={styles.header}> Login </Text>
         <View style={styles.logoContainer}>
-            {/* <Image style={styles.logo} 
-                   source={require('../Image/logo.png')}/> */}
-                     <Text style={styles.title}>  Grab & Go </Text>
-        </View>
-        <View>
+                     <Image 
+                    style={styles.logo} 
+                    source={require('../Image/logo.png')}/>
+                    </View>
+                    <Text style={styles.title}>Grab & Go</Text>
+                    
+          <View>
         
         <Ionicons name={"ios-person"} size={28} color={'#0050a0'}
            style={styles.inputIcon}/>
@@ -205,6 +207,10 @@ const styles = StyleSheet.create({
       opacity:0.9,
       fontWeight:'900',
       fontSize:20,
-      color:'#042E44' 
+      color:'#042E44' ,
+      justifyContent:'center',
+      marginTop: -55,
+      marginBottom: 45,
+      marginLeft:110
   }
 });

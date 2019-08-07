@@ -11,7 +11,7 @@ export default class LoginScreen extends React.Component {
     render() {
       return (
         <KeyboardAvoidingView behavior= "padding" style={styles.wrapper}>
-            <Container style={{ backgroundColor: 'white', flex: 1}}>
+                      <Container style={{ backgroundColor: 'white', flex: 1}}>
               <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
                style={{ flex:1,padding: 12, borderRadius:0 }}>
              <LoginForm navigation={this.props.navigation}/>
