@@ -12,7 +12,7 @@ export default class AddSubscriptionView extends React.Component {
 
             <View style={styles.container}>
   <View style={{ backgroundColor: 'white', flex: 1}}>
-          <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+          <LinearGradient colors={['#042E44','#163D51','#2D637F','#729DB3', '#99C0D4','white','white','white']} 
            style={{ flex:1, borderRadius:0 }}>
 
         <ScrollView style={styles.container} ref={ref => (this.scrollViewRef = ref)}>
@@ -49,14 +49,16 @@ export default class AddSubscriptionView extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    marginTop:20,
   },
   textWrapper: {
     margin: 10
   },
   infoText: {
     fontSize: 18,
-    textAlign: 'center'
+    textAlign: 'center',
+    color: 'white'
   },
   cardFormWrapper: {
     padding: 10,

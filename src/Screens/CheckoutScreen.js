@@ -33,10 +33,11 @@ export default class CheckoutScreen extends React.Component {
     },
     title: "Checkout",
     headerTitleStyle: {
-      fontFamily: "work-sans-semibold",
+      // fontFamily: "work-sans-semibold",
       fontSize: 18,
       textAlign: "center",
       flex: 1,
+      color: '#042E44',
     },
     headerLeft: (
       <Button
@@ -61,7 +62,7 @@ export default class CheckoutScreen extends React.Component {
       <Button
         buttonStyle={styles.saveButton}
         titleStyle={styles.titleButtonStyle}
-        title="TEST METHOD"
+        title="STRIPE METHOD"
         icon={
           <View style={styles.appleLogoButtonContainer}>
             <Ionicons name="logo-apple" size={20} color="#fff" />
@@ -83,7 +84,7 @@ export default class CheckoutScreen extends React.Component {
         >
           <View style={styles.container}>
             <View>
-              <View style={styles.inputContainerGlobal}>
+              {/* <View style={styles.inputContainerGlobal}>
                 <Text style={styles.inputLabelStyle}>Deliver To</Text>
                 <Button
                   onPress={() => this.props.navigation.navigate("Delivery")}
@@ -102,7 +103,7 @@ export default class CheckoutScreen extends React.Component {
                   iconRight
                   type="outline"
                 />
-              </View>
+              </View> */}
             </View>
             <View style={styles.contactDetailsContainer}>
               <View style={styles.bottomView}>
@@ -110,7 +111,7 @@ export default class CheckoutScreen extends React.Component {
                   value="-10%"
                   status="success"
                   textStyle={{
-                    fontFamily: "work-sans",
+                    // fontFamily: "work-sans",
                     fontSize: 12,
                     color: "#fff",
                   }}
@@ -134,7 +135,7 @@ export default class CheckoutScreen extends React.Component {
             </View>
             <View>
               <View style={styles.spaceBetweenContainer}>
-                <Text style={styles.contactText}>My bag</Text>
+                <Text style={styles.contactText}>My Cart</Text>
                 <Button
                   title="Show all"
                   type="clear"
@@ -153,31 +154,18 @@ export default class CheckoutScreen extends React.Component {
             data={[
               {
                 key:
-                  "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Catty-Back-Black-800x1200.jpg",
-              },
+                "https://qne.com.pk/product_images/orgsize_156077up-images-3.jpg"              },
               {
                 key:
-                  "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Medical-Front-Yellow-800x1200.jpg",
-              },
-              {
-                key:
-                  "https://wondermedia.ru/wp-content/uploads/2017/12/FLY-BLACK-BACK-800x1200.jpg",
-              },
-              {
-                key:
-                  "https://wondermedia.ru/wp-content/uploads/2017/12/NEW-WAVE-ELEMENT-BEIGE-FRONT-800x1200.jpg",
-              },
-              {
-                key:
-                  "https://wondermedia.ru/wp-content/uploads/2017/12/LAW-YELLOW-FRONT-800x1200.jpg",
-              },
+                "https://ayaan.com.pk/assets/uploads/faizan3/8961100287826.jpg"              },
+              
             ]}
             renderItem={(
               { item } // Standard Image
             ) => <Image source={{ uri: item.key }} style={styles.checkoutSliderImage} />}
           />
           <View style={styles.container}>
-            <View style={styles.contactDetailsContainer}>
+            {/* <View style={styles.contactDetailsContainer}>
               <Text style={styles.contactText}>Delivery options</Text>
               <View style={styles.line}></View>
             </View>
@@ -208,9 +196,9 @@ export default class CheckoutScreen extends React.Component {
                 1 day fly time and 1 day delivery time to door. Be fast stylish faster like a
                 bossman.
               </Text>
-            </View>
+            </View> */}
 
-            <View style={styles.contactDetailsContainer}>
+            {/* <View style={styles.contactDetailsContainer}>
               <View style={styles.spaceBetweenContainer}>
                 <CheckBox
                   activeOpacity={1}
@@ -233,7 +221,7 @@ export default class CheckoutScreen extends React.Component {
                 />
                 <Text>+$ 0</Text>
               </View>
-            </View>
+                </View>*/}
             <View style={styles.contactDetailsContainer}>
               <Text style={styles.contactText}>Payment</Text>
               <View style={styles.line}></View>
@@ -245,9 +233,9 @@ export default class CheckoutScreen extends React.Component {
                 textStyle={{
                   fontSize: 14,
                   marginLeft: 24,
-                  color: "#000",
+                  color: "#042E44",
                 }}
-                fontFamily="work-sans"
+                // fontFamily="work-sans"
                 title="ApplePay"
                 checked={!!(this.state.visaChecked === false && this.state.stripeChecked === false)}
                 onPress={() =>
@@ -259,12 +247,12 @@ export default class CheckoutScreen extends React.Component {
                 }
                 uncheckedIcon={
                   <View style={styles.checkBoxSelectIconContainer}>
-                    <Ionicons name="ios-radio-button-off" size={20} color="#F05829" />
+                    <Ionicons name="ios-radio-button-off" size={20} color="#042E44" />
                   </View>
                 }
                 checkedIcon={
                   <View style={styles.checkBoxSelectIconContainer}>
-                    <Ionicons name="ios-radio-button-on" size={20} color="#F05829" />
+                    <Ionicons name="ios-radio-button-on" size={20} color="#042E44" />
                   </View>
                 }
               />
@@ -272,12 +260,12 @@ export default class CheckoutScreen extends React.Component {
           </View>
           <View style={styles.bottomPayContainer}>
             <View style={[styles.spaceBetweenContainer, styles.subTotalContainer]}>
-              <Text style={styles.showAllButtonTitle}>Sub-total</Text>
-              <Text style={styles.subTotalCountText}>+$ 6.66</Text>
+              {/* <Text style={styles.showAllButtonTitle}>Sub-total</Text>
+              <Text style={styles.subTotalCountText}>RS 6.66</Text> */}
             </View>
             <View style={[styles.spaceBetweenContainer, styles.totalContainer]}>
               <Text style={styles.totalDescText}>Total to pay</Text>
-              <Text style={styles.totalCountText}>+$ 213.66</Text>
+              <Text style={styles.totalCountText}>Rs 64</Text>
             </View>
             {this.displayPayButton()}
             <Text style={styles.privacyText}>
@@ -337,16 +325,20 @@ const styles = StyleSheet.create({
   },
   infoWarningText: {
     marginLeft: 16,
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
+    color: "#042E44",
+
   },
   contactDetailsContainer: {
     marginBottom: 24,
   },
   contactText: {
     marginBottom: 16,
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 14,
+    color: "#042E44",
+
   },
   addressBadge: {
     paddingVertical: 6,
@@ -356,8 +348,10 @@ const styles = StyleSheet.create({
     borderColor: "#000",
     marginRight: 16,
     marginBottom: 32,
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 12,
+    color: "#042E44",
+
   },
   checkBoxContainer: {
     borderWidth: 0,
@@ -383,16 +377,20 @@ const styles = StyleSheet.create({
     height: 20,
   },
   checkBoxDesc: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 10,
     color: "#787878",
     marginLeft: 46,
     width: 220,
     lineHeight: 16,
+    color: "#042E44",
+
   },
   checkBoxPriceText: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 14,
+    color: "#042E44",
+
   },
   emptyBox: {
     width: 20,
@@ -419,9 +417,11 @@ const styles = StyleSheet.create({
   },
   inputLabelStyle: {
     flex: 24,
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
     color: "#000",
+    color: "#042E44",
+
   },
   inputContainerStyle: {
     flex: 76,
@@ -444,8 +444,10 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   inputInsideStyle: {
-    fontFamily: "work-sans-semibold",
+    // fontFamily: "work-sans-semibold",
     fontSize: 12,
+    color: "#042E44",
+
   },
   spaceBetweenContainer: {
     flexDirection: "row",
@@ -460,8 +462,9 @@ const styles = StyleSheet.create({
     height: 14,
   },
   showAllButtonTitle: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
+    color: "#042E44",
   },
   checkoutSliderContainer: {
     paddingLeft: 24,
@@ -482,8 +485,10 @@ const styles = StyleSheet.create({
     flex: 65,
   },
   labelCardNumber: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
+    color: "#042E44",
+
   },
   inputPayRow: {
     marginTop: 16,
@@ -506,9 +511,11 @@ const styles = StyleSheet.create({
     borderRightColor: "#000",
   },
   cardInput: {
-    fontFamily: "work-sans-semibold",
+    // fontFamily: "work-sans-semibold",
     fontSize: 12,
     minHeight: 14,
+    color: "#042E44",
+
   },
   textCenter: {
     textAlign: "center",
@@ -518,9 +525,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleButtonStyle: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 18,
     flex: 2,
+
   },
   appleLogoButtonContainer: {
     borderLeftWidth: 1,
@@ -529,6 +537,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     flex: 1,
+    backgroundColor: "#042E44",
   },
   saveButton: {
     justifyContent: "space-around",
@@ -536,6 +545,7 @@ const styles = StyleSheet.create({
     height: 55,
     marginBottom: 24,
     width: "100%",
+    backgroundColor: "#042E44",
   },
   addressButton: {
     justifyContent: "space-around",
@@ -544,10 +554,11 @@ const styles = StyleSheet.create({
     borderColor: "#000",
   },
   addressButtonText: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 12,
     paddingTop: 0,
     paddingBottom: 0,
+    color: "#042E44",
   },
   bottomPayContainer: {
     padding: 24,
@@ -557,25 +568,29 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   subTotalCountText: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 14,
+    color: "#042E44",
   },
   totalContainer: {
     marginBottom: 24,
   },
   totalDescText: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 12,
+    color: "#042E44",
   },
   totalCountText: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 14,
+    color: "#042E44",
   },
   privacyText: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 14,
-    color: "#646464",
-    marginBottom: 16,
+    color: "#042E44",
+    opacity: 0.7,
+   marginBottom: 16,
   },
   privacyHyperlink: {
     textDecorationLine: "underline",

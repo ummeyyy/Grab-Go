@@ -4,6 +4,8 @@ import { Button, ThemeProvider, Image } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
 import Swipeout from "react-native-swipeout";
+import Loader from '../components/Loader';
+
 
 const theme = {
   colors: {
@@ -16,21 +18,22 @@ export default class CartScreen extends React.Component {
     super(props);
 
     this.state = {
+      isLoading:false,
       data: [
-        {
-          key:
-            "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Catty-Back-Black-800x1200.jpg",
-          id: 0,
-        },
-        {
-          key:
-            "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Medical-Front-Yellow-800x1200.jpg",
-          id: 1,
-        },
-        {
-          key: "https://wondermedia.ru/wp-content/uploads/2017/12/FLY-BLACK-BACK-800x1200.jpg",
-          id: 2,
-        },
+        // {
+        //   key:
+        //     "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Catty-Back-Black-800x1200.jpg",
+        //   id: 0,
+        // },
+        // {
+        //   key:
+        //     "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Medical-Front-Yellow-800x1200.jpg",
+        //   id: 1,
+        // },
+        // {
+        //   key: "https://wondermedia.ru/wp-content/uploads/2017/12/FLY-BLACK-BACK-800x1200.jpg",
+        //   id: 2,
+        // },
       ],
     };
   }
@@ -45,10 +48,11 @@ export default class CartScreen extends React.Component {
     },
     title: "Cart",
     headerTitleStyle: {
-      fontFamily: "work-sans-semibold",
+      // fontFamily: "work-sans-semibold",
       fontSize: 18,
       textAlign: "center",
       flex: 1,
+      color: '#042E44',
     },
   });
 
@@ -64,91 +68,105 @@ export default class CartScreen extends React.Component {
   };
 
   render() {
-    return (
-      <ThemeProvider theme={theme}>
-        <KeyboardAwareScrollView
-          showsVerticalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <View style={styles.container}>
-            <FlatList
-              style={styles.productListContainer}
-              showsHorizontalScrollIndicator={false}
-              data={this.state.data}
-              keyExtractor={(item, index) => item.key}
-              renderItem={({ item }) => (
-                <View style={styles.swipeContainer}>
-                  <Swipeout
-                    right={[
-                      {
-                        component: (
-                          <TouchableOpacity
-                            onPress={() => this.deleteItemById(item.key)}
-                            style={styles.deleteIconContainer}
-                          >
-                            <Ionicons name="md-trash" size={28} color="#F05829" />
-                          </TouchableOpacity>
-                        ),
-                        backgroundColor: "#fff",
-                      },
-                    ]}
-                    autoClose
-                    backgroundColor="transparent"
-                    buttonWidth={96}
-                  >
-                    <View style={styles.productContainer}>
-                      <TouchableOpacity>
-                        <Image source={{ uri: item.key }} style={styles.productImage} />
-                      </TouchableOpacity>
-                      <View style={styles.productContent}>
-                        <Text style={styles.productTitle}>
-                          Sweatshirt with Gucci basquiat print
-                        </Text>
-                        <View style={styles.priceRow}>
-                          <Text style={styles.actualPrice}>$ 32</Text>
-                          <Text style={styles.oldPrice}>$ 64</Text>
+    const {params} = this.props.navigation.state;
+    // console.log("cart")
+    // console.log(params.product.product_name)
+    this.state.data.push(params.product)
+    if (this.state.data.length>0){
+      return (
+        <ThemeProvider theme={theme}>
+          <KeyboardAwareScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.contentContainer}
+          >
+            <View style={styles.container}>
+              <FlatList
+                style={styles.productListContainer}
+                showsHorizontalScrollIndicator={false}
+                data={this.state.data}
+                keyExtractor={(item, index) => item.key}
+                renderItem={({ item }) => (
+                  <View style={styles.swipeContainer}>
+                    <Swipeout
+                      right={[
+                        {
+                          component: (
+                            <TouchableOpacity
+                              onPress={() => this.deleteItemById(item.key)}
+                              style={styles.deleteIconContainer}
+                            >
+                              <Ionicons name="md-trash" size={30} color="#F05829" />
+                            </TouchableOpacity>
+                          ),
+                          backgroundColor: "#fff",
+                        },
+                      ]}
+                      autoClose
+                      backgroundColor="transparent"
+                      buttonWidth={96}
+                    >
+                      <View style={styles.productContainer}>
+                        <TouchableOpacity>
+                          <Image source={{ uri: item.url }} style={styles.productImage} />
+                        </TouchableOpacity>
+                        <View style={styles.productContent}>
+                          <Text style={styles.productTitle}>
+                            Sweatshirt with Gucci basquiat print
+                          </Text>
+                          <View style={styles.priceRow}>
+                            <Text style={styles.actualPrice}>$ 32</Text>
+                            <Text style={styles.oldPrice}>$ 64</Text>
+                          </View>
+                        </View>
+                        <View style={styles.productCountButtons}>
+                          <Button
+                            buttonStyle={styles.plusButton}
+                            titleStyle={styles.titleButtonStyle}
+                            icon={<Ionicons name="ios-add" size={18} color="#042E44" />}
+                          />
+                          <View style={styles.countValueContainer}>
+                            <Text style={styles.countValueText}>1</Text>
+                          </View>
+                          <Button
+                            buttonStyle={styles.minusButton}
+                            titleStyle={styles.titleButtonStyle}
+                            icon={<Ionicons name="ios-remove" size={18} color="#042E44" />}
+                          />
                         </View>
                       </View>
-                      <View style={styles.productCountButtons}>
-                        <Button
-                          buttonStyle={styles.plusButton}
-                          titleStyle={styles.titleButtonStyle}
-                          icon={<Ionicons name="ios-add" size={18} color="#000" />}
-                        />
-                        <View style={styles.countValueContainer}>
-                          <Text style={styles.countValueText}>1</Text>
-                        </View>
-                        <Button
-                          buttonStyle={styles.minusButton}
-                          titleStyle={styles.titleButtonStyle}
-                          icon={<Ionicons name="ios-remove" size={18} color="#000" />}
-                        />
-                      </View>
-                    </View>
-                  </Swipeout>
-                </View>
-              )}
-            />
-            <Button
-              buttonStyle={styles.saveButton}
-              titleStyle={styles.titleButtonStyle}
-              title="CHECKOUT"
-              icon={
-                <View style={styles.buttonIconContainer}>
-                  <Text style={styles.totalButtonText}>Total</Text>
-                  <Text style={styles.totalButtonValue}>$ 412</Text>
-                </View>
-              }
-              iconRight
-              containerStyle={styles.saveButtonContainer}
-              onPress={() => this.props.navigation.navigate("checkout")}
-            />
-          </View>
-        </KeyboardAwareScrollView>
-      </ThemeProvider>
-    );
+                    </Swipeout>
+                  </View>
+                )}
+              />
+              <Button
+                buttonStyle={styles.saveButton}
+                titleStyle={styles.titleButtonStyle}
+                title="CHECKOUT"
+                icon={
+                  <View style={styles.buttonIconContainer}>
+                    <Text style={styles.totalButtonText}>Total</Text>
+                    <Text style={styles.totalButtonValue}>$32</Text>
+                  </View>
+                }
+                iconRight
+                containerStyle={styles.saveButtonContainer}
+                onPress={() => this.props.navigation.navigate("checkout",{total:32})}
+              />
+            </View>
+          </KeyboardAwareScrollView>
+        </ThemeProvider>
+      ) 
+    }
+    return <Loader
+    modalVisible={this.state.isLoading}
+    animationType="slide"
+/> 
+
+      
+    }
+    ;
   }
-}
+
 
 const styles = StyleSheet.create({
   headerBackButton: {
@@ -157,7 +175,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingHorizontal: 24,
+    paddingHorizontal: 14,
   },
   line: {
     width: "100%",
@@ -175,7 +193,7 @@ const styles = StyleSheet.create({
   },
   deleteIconContainer: {
     flex: 1,
-    borderLeftColor: "#000",
+    borderLeftColor: "#042E44",
     borderLeftWidth: 1,
     alignItems: "flex-end",
     justifyContent: "center",
@@ -183,7 +201,7 @@ const styles = StyleSheet.create({
     marginLeft: 48,
   },
   swipeContainer: {
-    marginVertical: 32,
+    marginVertical: 38,
   },
   productContainer: {
     flexDirection: "row",
@@ -202,20 +220,22 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   productTitle: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 16,
     marginBottom: 8,
+    color:'#042E44',
   },
   actualPrice: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 16,
     color: "#F05829",
-    marginRight: 8,
+    marginRight: 8,  
   },
   oldPrice: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 10,
     textDecorationLine: "line-through",
+    color:'#042E44',
   },
   productCountButtons: {
     paddingHorizontal: 8,
@@ -223,20 +243,22 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderRadius: 0,
     borderWidth: 1,
-    borderColor: "#000",
+    borderColor: "#042E44",
   },
   plusButton: {
     borderRadius: 0,
     backgroundColor: "transparent",
+    color:'#042E44',
   },
   minusButton: {
     borderRadius: 0,
     backgroundColor: "transparent",
+    color:'#042E44',
   },
   countValueContainer: {
     borderTopWidth: 1,
-    borderTopColor: "#000",
-    borderBottomColor: "#000",
+    borderTopColor: "#042E44",
+    borderBottomColor: "#042E44",
     borderBottomWidth: 1,
   },
   countValueText: {
@@ -244,9 +266,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   titleButtonStyle: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 18,
     paddingHorizontal: 48,
+    backgroundColor: '#042E44',
   },
   buttonIconContainer: {
     borderLeftWidth: 1,
@@ -256,22 +279,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flex: 1,
+    backgroundColor: '#042E44',
   },
   saveButton: {
     justifyContent: "space-around",
     borderRadius: 0,
     height: 55,
     marginBottom: 24,
+    backgroundColor: '#042E44',
   },
   totalButtonText: {
     color: "#fff",
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
     marginRight: 8,
   },
   totalButtonValue: {
     color: "#fff",
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 18,
   },
-});
+})

@@ -1,9 +1,10 @@
-
 import React, {Component} from 'react';
 import {StyleSheet,View, Text, Image, TouchableOpacity, AsyncStorage} from 'react-native';
 import { LinearGradient } from 'expo';
-import { Button } from 'native-base';
+// import { Button } from 'native-base';
 import * as firebase from 'firebase';
+import { Button } from '../components';
+
 
 export default class Profile extends Component {
     signOut = async () => { AsyncStorage.clear() 
@@ -13,7 +14,7 @@ export default class Profile extends Component {
         return(
             <View style={styles.container}>
                 <View style={{ backgroundColor: 'white', flex: 1}}>
-                <LinearGradient colors={['white','white', '#99C0D4','#729DB3','#2D637F','#163D51']} 
+                <LinearGradient colors={['#042E44','#163D51','#2D637F','#729DB3', '#99C0D4','white','white']} 
                 style={{ flex:1, borderRadius:0 }}>
        {/* ===================== END OF BACKGROUND ========================== */}
             <View style={styles.header}></View>
@@ -24,12 +25,21 @@ export default class Profile extends Component {
                 <Text style={styles.info}>Member / 30 </Text>
                 <Text style={styles.description}> A user from Karachi, frequents Imtiaz, Naheed and Agha's.</Text>
                 <View style={{ marginTop: 20}}>
-                <TouchableOpacity style={styles.buttonContainer}>
+                {/* <TouchableOpacity style={styles.buttonContainer}>
                   <Text style={styles.text1}>Previous Purchases</Text>  
-                </TouchableOpacity>             
-                <TouchableOpacity style={styles.buttonContainer}>
+                </TouchableOpacity>              */}
+<View style={{marginTop:20}}>
+                <Button gradient
+               style={styles.buttonContainer}
+               onPress={this.signOut}> 
+                <Text style={{ textAlign: 'center', fontWeight:'700', fontSize:18, color: 'white' }}>SIGNOUT</Text>
+                </Button>
+
+                </View>
+
+                {/* <TouchableOpacity style={styles.buttonContainer}>
                   <Button transparent onPress={this.signOut}><Text style={styles.text1}>Sign Out</Text></Button> 
-                </TouchableOpacity>
+                </TouchableOpacity> */}
               </View>
               </View>
           </View>
@@ -62,7 +72,8 @@ export default class Profile extends Component {
     name:{
       fontSize:24,
       color:"#042E44",
-      fontFamily: 'AlNile'
+      fontFamily: 'AlNile',
+      fontWeight: '600'
     },
     body:{
       marginTop:50,
@@ -92,13 +103,11 @@ export default class Profile extends Component {
         },
     buttonContainer: {
       marginTop:10,
-      height:45,
       flexDirection: 'row',
       justifyContent: 'center',
       alignItems: 'center',
       marginBottom:20,
-      width:250,
-      borderRadius:30,
-      backgroundColor: "#042E44",
+      width:"100%",
+       backgroundColor: "#042E44",
     },
-  });  
+  });

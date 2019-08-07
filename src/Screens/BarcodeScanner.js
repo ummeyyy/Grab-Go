@@ -8,8 +8,11 @@ export default class BarcodeScannerExample extends React.Component {
   }
 
   state = {
-    hasCameraPermission: null,
-  }
+    hasCameraPermission:null,
+    data:null,
+   errorMessage: null,
+   isLoading:false
+    }
 
   async componentDidMount() {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
@@ -28,14 +31,44 @@ export default class BarcodeScannerExample extends React.Component {
     return (
       <View style={{ flex: 1 }}>
         <BarCodeScanner
-          onBarCodeScanned={this.handleBarCodeScanned}
+          onBarCodeScanned={this._handleBarCodeRead}
           style={StyleSheet.absoluteFill}
         />
+         { this.state.isLoading && <Loader
+                            modalVisible={this.state.isLoading}
+                            animationType="slide"
+                        /> }
       </View>
     );
   }
 
-  handleBarCodeScanned = ({ type, data }) => {
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+  _handleBarCodeRead = ( { type, data }) => {
+    const { navigation } = this.props;
+    if(this.state.data==null){
+      this.setState({data:data});
+    //   Alert.alert(`Bar code type : ${type} and data : ${data}`); 
+      
+      Vibration.vibrate(100);
+    console.log(this.state)
+        let datatopost2={
+            attendance_id : Number(data),
+            student_id:navigation.getParam('student_id', 'NO-ID'),
+            lat:this.state.location.coords.latitude,
+            log:this.state.location.coords.longitude
+
+        }
+        console.log(datatopost2)
+        
+      this.setState({ isLoading: true });
+        
+       
+          
+      
+
+    }
+    
+
+
+
   }
 }

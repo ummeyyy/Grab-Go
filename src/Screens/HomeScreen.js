@@ -15,6 +15,9 @@ import {LinearGradient} from 'expo';
 import { Button, ThemeProvider, Image } from "react-native-elements";
 import { Ionicons } from "@expo/vector-icons";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scrollview";
+import {catRef,apparelsRef,back_to_schoolRef,health_beautyRef,food_groceryRef,home_appliancesRef,pharmacyRef} from '../Firebase/db';
+import Loader from '../components/Loader';
+
 
 const theme = {
   colors: {
@@ -69,9 +72,14 @@ export default class HomeScreen extends React.Component {
     super(props);
     this.state = {
       fontLoaded: false,
+      allPrices:[5,5,2,2,2,3],
+      isLoading:false
     };
   
   }
+   componentWillMount(){
+  }
+   
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -100,7 +108,222 @@ export default class HomeScreen extends React.Component {
     },
     headerLeft: null,
   });
+  handlePressCategory = (index)=>{
+    this.setState({isLoading:true
+      })
+      console.log("the index is ")
+      console.log(index)
+      let ind = index
+      this.getCategoryProducts(ind)
+  }
+  getCategoryProducts = (index) => {
+    console.log(index)
+    // let apparelsRef = []
+    // let back_to_schoolRef = []
+    // let health_beautyRef = []
+    // let food_groceryRef = []
+    // let home_appliancesRef = []
+    // let pharmacyRef = []
+    let category = []
+    let products = []
+    console.log('not products')
+    try{
+      if (index === 0 ){
 
+        apparelsRef.once("value", dataSnapshot => {
+          // console.log("blablaballbaala")
+    
+          dataSnapshot.forEach(item => {
+            var itemVal = item.val()
+            // console.log(itemVal)
+            category.push(itemVal)
+    
+             })
+             for (var i=0;i<category.length;i++){
+              products.push(category[i])
+             }
+             
+            //  console.log(products)
+        this.setState({isLoading:false})
+        this.props.navigation.navigate("Product",{category:products})
+         category = []
+     products = []
+
+
+            //  //this is giving us a products array of appraisal 
+            //  products.forEach(item =>{
+            //    console.log(item.product_name)
+            //  })
+           
+          })
+
+      } 
+      else if(index === 1){
+        console.log(index)
+        back_to_schoolRef.once("value", dataSnapshot => {
+          // console.log("blablaballbaala")
+    
+          dataSnapshot.forEach(item => {
+            var itemVal = item.val()
+            // console.log(itemVal)
+            category.push(itemVal)
+    
+             })
+             for (var i=0;i<category.length;i++){
+              products.push(category[i])
+             }
+             
+            //  console.log(products)
+        this.setState({isLoading:false})
+        this.props.navigation.navigate("Product",{category:products})
+         category = []
+     products = []
+
+
+            //  //this is giving us a products array of appraisal 
+            //  products.forEach(item =>{
+            //    console.log(item.product_name)
+            //  })
+           
+          })
+      }
+      
+      else if (index ===2 ){
+        console.log(index)
+        health_beautyRef.once("value", dataSnapshot => {
+          // console.log("blablaballbaala")
+    
+          dataSnapshot.forEach(item => {
+            var itemVal = item.val()
+            // console.log(itemVal)
+            category.push(itemVal)
+    
+             })
+             for (var i=0;i<category.length;i++){
+              products.push(category[i])
+             }
+             
+            //  console.log(products)
+        this.setState({isLoading:false})
+        this.props.navigation.navigate("Product",{category:products})
+         category = []
+     products = []
+
+
+            //  //this is giving us a products array of appraisal 
+            //  products.forEach(item =>{
+            //    console.log(item.product_name)
+            //  })
+           
+          })
+      } 
+      else if(index === 3){
+        console.log(index)
+
+        food_groceryRef.once("value", dataSnapshot => {
+          // console.log("blablaballbaala")
+    
+          dataSnapshot.forEach(item => {
+            var itemVal = item.val()
+            // console.log(itemVal)
+            category.push(itemVal)
+    
+             })
+             for (var i=0;i<category.length;i++){
+              products.push(category[i])
+             }
+             
+            //  console.log(products)
+        this.setState({isLoading:false})
+        this.props.navigation.navigate("Product",{category:products})
+        category = []
+        products = []
+
+            //  //this is giving us a products array of appraisal 
+            //  products.forEach(item =>{
+            //    console.log(item.product_name)
+            //  })
+           
+          })
+      }
+      else if (index ===4 ){
+        console.log(index)
+
+        home_appliancesRef.once("value", dataSnapshot => {
+          // console.log("blablaballbaala")
+    
+          dataSnapshot.forEach(item => {
+            var itemVal = item.val()
+            // console.log(itemVal)
+            category.push(itemVal)
+    
+             })
+             for (var i=0;i<category.length;i++){
+              products.push(category[i])
+             }
+             
+            //  console.log(products)
+        this.setState({isLoading:false})
+        this.props.navigation.navigate("Product",{category:products})
+        category = []
+     products = []
+
+
+            //  //this is giving us a products array of appraisal 
+            //  products.forEach(item =>{
+            //    console.log(item.product_name)
+            //  })
+           
+          })
+      } 
+      else if(index === 5){
+        console.log(index)
+
+        pharmacyRef.once("value", dataSnapshot => {
+          // console.log("blablaballbaala")
+    
+          dataSnapshot.forEach(item => {
+            var itemVal = item.val()
+            // console.log(itemVal)
+            category.push(itemVal)
+    
+             })
+             for (var i=0;i<category.length;i++){
+              products.push(category[i])
+             }
+             
+            //  console.log(products)
+        this.setState({isLoading:false})
+        this.props.navigation.navigate("Product",{category:products})
+        category = []
+     products = []
+
+
+            //  //this is giving us a products array of appraisal 
+            //  products.forEach(item =>{
+            //    console.log(item.product_name)
+            //  })
+           
+          })
+      }
+      
+    
+      
+
+      
+        
+      }
+  
+  catch (error) {
+  alert(error);
+}
+category = []
+products = []
+         
+  }
+
+
+  
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -142,18 +365,22 @@ export default class HomeScreen extends React.Component {
               renderItem={({ item, index }) => (
                 <TouchableOpacity
                   style={styles.productGridItem}
-                  onPress={() => this.props.navigation.navigate("Product")}
+                  onPress={() => this.handlePressCategory(index)}
                 >
                   <Image style={styles.imageProductGridItem} source={{ uri: item.picture }} />
                   <View style={[styles.titleProductGridItemContainer]}>
                     <Text style={[styles.titleProductGridItem]}>{item.title}</Text>
                   </View>
                   <View style={styles.priceRowRelated}>
-                    <Text style={styles.actualitem}>Total Items: {item.totalitems}</Text>
+                    <Text style={styles.actualitem}>Total Items: {this.state.allPrices[index]}</Text>
                   </View>
                 </TouchableOpacity>
               )}
             />
+            { this.state.isLoading && <Loader
+                            modalVisible={this.state.isLoading}
+                            animationType="slide"
+                        /> }
           </View>
 
         </KeyboardAwareScrollView>

@@ -3,14 +3,16 @@
 
 import * as firebase from 'firebase';
 
-const config = {
-  apiKey: "AIzaSyAOnNkALQ9rZzc-wNacJ4lXjLjE_aQnr-A",
-  authDomain:  "reactfirebase-a3d77.firebaseapp.com",
-  databaseURL: "https://reactfirebase-a3d77.firebaseio.com",
-  projectId: "reactfirebase-a3d77",
+const firebaseConfig = {
+  apiKey: "AIzaSyD6A-I7EwVxEYv6XpIldOP7K0_ep4h87Gg",
+  authDomain: "grabngo-6c4c2.firebaseapp.com",
+  databaseURL: "https://grabngo-6c4c2.firebaseio.com",
+  projectId: "grabngo-6c4c2",
   storageBucket: "",
+  messagingSenderId: "262815030363",
+  appId: "1:262815030363:web:964b185f42b13a9d"
 };
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 export default firebase;
 

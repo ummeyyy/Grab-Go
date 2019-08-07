@@ -33,6 +33,7 @@ import PurchaseSuccessful from './src/Screens/PurchaseSuccessful'
 import AddSubscriptionScreen from './src/Screens/AddSubscriptionScreen'
 import ProductScreen from './src/Screens/ProductScreen'
 import ProductInformationScreen from './src/Screens/ProductInformationScreen'
+import QRcode from "./src/Screens/Qrcode";
 
 
 
@@ -51,14 +52,23 @@ const barcodeStackNavigator = createStackNavigator({
     }
   },
 
-  scan:{
+  Barcodescan:{
     screen:BarcodeScanner,
-    navigationOptions:{
-      header:null,
-     tabBarVisible: false
+    // navigationOptions:{
+    //   header:null,
+    //  tabBarVisible: false
        
-    }
-  }
+    // }
+  },
+  QRcodescan:{
+    screen:QRcode,
+    // navigationOptions:{
+    //   header:null,
+    //  tabBarVisible: false
+       
+    // }
+  },
+
 })
 barcodeStackNavigator.navigationOptions = ({ navigation }) => {
   let tabBarVisible;

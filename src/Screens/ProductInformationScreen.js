@@ -42,7 +42,7 @@ export default class ProductInformationScreen extends React.Component {
     },
     title: "Information",
     headerTitleStyle: {
-      fontFamily: "work-sans-semibold",
+      // fontFamily: "work-sans-semibold",
       fontSize: 18,
       textAlign: "center",
       flex: 1,
@@ -128,20 +128,20 @@ const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
   heading: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 21,
     marginTop: 30,
     color: '#042E44',
   },
   paragraph: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 14,
     marginTop: 30,
     lineHeight: 23,
     color: '#042E44',
   },
   listItem: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 14,
     lineHeight: 23,
     color: '#042E44',

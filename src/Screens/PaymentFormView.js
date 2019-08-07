@@ -1,32 +1,37 @@
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, View,ActivityIndicator } from 'react-native';
 import { CreditCardInput } from 'react-native-credit-card-input';
 import { FontAwesome } from '@expo/vector-icons';
 
+import { Button,Text } from '../components';
 /**
  * Renders the payment form and handles the credit card data
  * using the CreditCardInput component.
  */
 export default class PaymentFormView extends React.Component {
   constructor(props) {
-    super(props);
-    this.state = { cardData: { valid: false } };
-  }
+    super(props)
+    this.state = {
+      cardData:  false,
+      loading: false
+     } 
+    }
 
   render() {
     const { onSubmit, submitted, error } = this.props;
-
+    const { loading } = this.state;
     return (
       <View>
         <View>
           <CreditCardInput requiresName onChange={(cardData) => this.setState({ cardData })} />
         </View>
         <View style={styles.buttonWrapper}>
-          <Button
-            title='Make Payment'
-            disabled={!this.state.cardData.valid || submitted}
-            onPress={() => onSubmit(this.state.cardData)}
-          />
+        <Button gradient onPress={() => onSubmit(this.state.cardData)}
+         disabled={!this.state.cardData.valid || submitted}>
+         { loading?<ActivityIndicator size="large" color="white" />:<Text bold white center>Make Payment</Text>}       
+        </Button>
+        
+          
           {/* Show errors */}
           {error && (
             <View style={styles.alertWrapper}>
@@ -50,7 +55,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   buttonWrapper: {
-    padding: 10,
+    padding: 50,
     zIndex: 100
   },
   alertTextWrapper: {

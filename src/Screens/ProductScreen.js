@@ -14,6 +14,7 @@ import {
 import SwiperFlatList from "react-native-swiper-flatlist";
 import ColorRadioButtons from "../components/ColorRadioButtons";
 import SizeRadioButtons from "../components/SizeRadioButtons";
+import Loader from '../components/Loader';
 
 const theme = {
   colors: {
@@ -88,13 +89,27 @@ const relatedItems = [
     price: "$ 32",
     oldprice: "$ 64",
   },
+  {
+    title: "Sweatshirt with Versace print",
+    picture:
+      "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Medical-Front-Yellow-800x1200.jpg",
+    price: "$ 32",
+    oldprice: "$ 64",
+  }
+  
+
 ];
 
 export default class ProductScreen extends React.Component {
   constructor(props) {
     super(props);
+
+
     this.state = {
       isVisible: false,
+      isLoading:false
+
+
     };
   }
 
@@ -108,7 +123,7 @@ export default class ProductScreen extends React.Component {
     headerTransparent: true,
     title: "",
     headerTitleStyle: {
-      fontFamily: "work-sans-semibold",
+      // fontFamily: "work-sans-semibold",
       fontSize: 18,
       textAlign: "center",
       flex: 1,
@@ -135,6 +150,13 @@ export default class ProductScreen extends React.Component {
   });
 
   render() {
+    const {params} = this.props.navigation.state;
+    this.props.navigation.state = null
+    
+    console.log("productscreen")
+    console.log(params.category) // outputs "Some Value"
+    
+
     return (
       <ThemeProvider theme={theme}>
         <StatusBar backgroundColor="transparent" translucent />
@@ -150,31 +172,36 @@ export default class ProductScreen extends React.Component {
               paginationActiveColor="#F05829"
               paginationStyle={styles.paginationStyle}
               paginationStyleItem={styles.paginationStyleItem}
-              data={[
-                {
-                  key:
-                    "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Catty-Back-Black-800x1200.jpg",
-                },
-                {
-                  key:
-                    "https://wondermedia.ru/wp-content/uploads/2017/12/New-Wave-Medical-Front-Yellow-800x1200.jpg",
-                },
-                {
-                  key:
-                    "https://wondermedia.ru/wp-content/uploads/2017/12/FLY-BLACK-BACK-800x1200.jpg",
-                },
-                {
-                  key:
-                    "https://wondermedia.ru/wp-content/uploads/2017/12/NEW-WAVE-ELEMENT-BEIGE-FRONT-800x1200.jpg",
-                },
-                {
-                  key:
-                    "https://wondermedia.ru/wp-content/uploads/2017/12/LAW-YELLOW-FRONT-800x1200.jpg",
-                },
-              ]}
+              data = {params.category}
+              // data={[
+              //   {
+              //     key:
+              //       params.category[0].url
+              //   },
+              //   {
+              //     key:
+              //     params.category[1].url
+              //   },
+              //   {
+              //     key:
+              //     params.category[2].url
+              //   },
+              //   {
+              //     key:
+              //     params.category[3].url
+              //   },
+              //   {
+              //     key:
+              //     params.category[4].url
+              //   },
+                
+
+
+              // ]}
+
               renderItem={({ item }) => (
                 <View style={styles.swiperPicContainer}>
-                  <Image source={{ uri: item.key }} style={styles.productSwiperPic} />
+                  <Image source={{ uri: item.url }} style={styles.productSwiperPic} />
                 </View>
               )}
             />
@@ -182,14 +209,18 @@ export default class ProductScreen extends React.Component {
 
           <View style={styles.container}>
             <View style={styles.priceRow}>
-              <Text style={styles.actualPrice}>$ 32</Text>
-              <Text style={styles.oldPrice}>$ 64</Text>
+              <Text style={styles.actualPrice}>Rs{params.category[2].price} </Text>
+              <Text style={styles.oldPrice}>Rs {params.category[2].price*0.05+params.category[2].price}</Text>
             </View>
             <View style={styles.productContent}>
-              <Text style={styles.productTitle}>Sweatshirt with Gucci basquiat print</Text>
+              <Text style={styles.productTitle}>{params.category[2].product_name}</Text>
               <Text style={styles.productDesc}>
-                Being the savage's bowsman, that is, the person who pulled the bow-oar in his boat
+              Availability : {params.category[2].availability}
               </Text>
+              { this.state.isLoading && <Loader
+                            modalVisible={this.state.isLoading}
+                            animationType="slide"
+                        /> }
             </View>
             <View style={styles.attributeContainer}>
               <ColorRadioButtons options={options} />
@@ -216,7 +247,7 @@ export default class ProductScreen extends React.Component {
               title="ADD TO CART"
               icon={
                 <View style={styles.appleLogoButtonContainer}>
-                  <Text style={styles.priceInsideButtonText}>$ 31</Text>
+                  <Text style={styles.priceInsideButtonText}>Rs {params.category[2].price}</Text>
                 </View>
               }
               iconRight
@@ -244,20 +275,21 @@ export default class ProductScreen extends React.Component {
             <FlatList
               horizontal
               showsHorizontalScrollIndicator={false}
-              keyExtractor={(item, index) => item.title}
-              data={relatedItems}
+              keyExtractor={(item, index) => item.product_name}
+              data={params.category}
               renderItem={({ item }) => (
                 <TouchableOpacity style={styles.relatedItemCard}>
-                  <Image style={styles.imageRelatedItem} source={{ uri: item.picture }} />
-                  <Text style={[styles.titleTabButton, styles.titleRelatedItem]}>{item.title}</Text>
+                  <Image style={styles.imageRelatedItem} source={{ uri: item.url }} />
+                  <Text style={[styles.titleTabButton, styles.titleRelatedItem]}>{item.product_name}</Text>
                   <View style={styles.priceRowRelated}>
-                    <Text style={styles.actualPriceRelated}>$ 14</Text>
-                    <Text style={styles.oldPriceRelated}>$ 32</Text>
+                    <Text style={styles.actualPriceRelated}>Rs {item.price}</Text>
+                    <Text style={styles.oldPriceRelated}>Rs {item.price+((item.price*5)/100)}</Text>
                   </View>
                 </TouchableOpacity>
               )}
             />
           </View>
+          
         </KeyboardAwareScrollView>
       </ThemeProvider>
     );
@@ -303,14 +335,14 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   actualPrice: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 21,
     // color: "#000",
     marginRight: 8,
     color: '#042E44',
   },
   oldPrice: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 14,
     color: "#646464",
     textDecorationLine: "line-through",
@@ -322,14 +354,14 @@ const styles = StyleSheet.create({
   },
   productTitle: {
     maxWidth: 200,
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 18,
     textAlign: "center",
     color: '#042E44',
   },
   productDesc: {
     marginVertical: 16,
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
     textAlign: "center",
     color: '#042E44',
@@ -352,12 +384,12 @@ const styles = StyleSheet.create({
   },
   titleButtonStyleSize: {
     marginRight: 16,
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
     color: '#042E44',
   },
   productTitleSize: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 18,
     color: '#042E44',
   },
@@ -373,7 +405,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
   },
   titleTabButton: {
-    fontFamily: "work-sans",
+    // fontFamily: "work-sans",
     fontSize: 12,
     color: '#042E44',
   },
@@ -384,7 +416,7 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   relatedItemsHeading: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 14,
     color: '#042E44',
   },
@@ -412,13 +444,13 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   actualPriceRelated: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 15,
     color: "#F05829",
     marginRight: 8,
   },
   oldPriceRelated: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 9,
     color: "#646464",
     textDecorationLine: "line-through",
@@ -431,7 +463,7 @@ const styles = StyleSheet.create({
     borderRadius: 0,
   },
   titleButtonStyle: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 18,
     flex: 57,
     paddingBottom: 0,
@@ -448,7 +480,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#042E44'
   },
   priceInsideButtonText: {
-    fontFamily: "work-sans-bold",
+    // fontFamily: "work-sans-bold",
     fontSize: 18,
     color: "#fff",
     backgroundColor: '#042E44'
