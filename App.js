@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
  *         - Settings Tab
  */
 
+ 
 
 import { createSwitchNavigator, createStackNavigator, createDrawerNavigator, createBottomTabNavigator } from 'react-navigation'
 import AuthLoadingScreen from './src/Screens/AuthLoadingScreen'
